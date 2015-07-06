@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="gray">#ddd</color>
+    <color name="black">#000</color>
+
+    <!--Cores Pallete-->
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorAccent">#FFC107</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSegundaryText">#727272</color>
+    <color name="colotTextIcons">#FFFFFF</color>
+
+</resources>
