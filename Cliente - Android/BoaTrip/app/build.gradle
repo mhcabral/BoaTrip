@@ -25,4 +25,5 @@ dependencies {
     compile('com.mikepenz:materialdrawer:3.0.9@aar') {
         transitive = true
     }
+    compile 'com.mcxiaoke.volley:library:1.0.+'
 }

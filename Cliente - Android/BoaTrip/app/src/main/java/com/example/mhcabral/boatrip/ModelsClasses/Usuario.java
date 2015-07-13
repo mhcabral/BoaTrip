@@ -1,5 +1,7 @@
 package com.example.mhcabral.boatrip.ModelsClasses;
 
+import android.graphics.drawable.Drawable;
+
 import java.sql.Date;
 
 /**
@@ -15,17 +17,11 @@ public class Usuario {
     private Usuario_funcao funcao;
     private Usuario_status status;
     private Date data_criacao;
+    private Drawable icon;
 
-    public Usuario(int id, String nome, String auth_key, String password_hash, String password_reset_token, String email, Usuario_funcao funcao, Usuario_status status, Date data_criacao) {
-        this.id = id;
+    public Usuario(String nome, String email) {
         this.nome = nome;
-        this.auth_key = auth_key;
-        this.password_hash = password_hash;
-        this.password_reset_token = password_reset_token;
         this.email = email;
-        this.funcao = funcao;
-        this.status = status;
-        this.data_criacao = data_criacao;
     }
 
     public int getId() {
@@ -98,5 +94,13 @@ public class Usuario {
 
     public void setData_criacao(Date data_criacao) {
         this.data_criacao = data_criacao;
+    }
+
+    public Drawable getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Drawable icon) {
+        this.icon = icon;
     }
 }

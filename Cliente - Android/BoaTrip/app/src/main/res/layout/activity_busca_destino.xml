@@ -1,0 +1,12 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    tools:context="com.example.mhcabral.boatrip.Activitys.BuscaDestinoActivity">
+
+    <include
+        android:id="@+id/tb_busca_destino"
+        layout="@layout/toolbar"/>
+
+</RelativeLayout>
