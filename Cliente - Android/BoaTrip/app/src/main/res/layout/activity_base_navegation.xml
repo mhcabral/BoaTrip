@@ -11,5 +11,5 @@
 
     <!--<include
         android:id="@+id/inc_tb_bottom"
-        layout="@layout/toolbar_bottom"/>-->
+        layout="@layout/toolbar_internal"/>-->
 </RelativeLayout>

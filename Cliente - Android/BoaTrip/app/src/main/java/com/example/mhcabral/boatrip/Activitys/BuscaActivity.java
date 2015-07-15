@@ -15,7 +15,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mhcabral.boatrip.ModelsClasses.Usuario;
+import com.example.mhcabral.boatrip.Controllers.Stub2;
 import com.example.mhcabral.boatrip.R;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -40,14 +40,13 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
     private Intent it;
     PopupWindow popupWindow;
     private String result;
-    private Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busca);
 
-        user = new Usuario("Novo Usuario","Adicionar Usuario");
+        init_stubs(this);
 
         //CUSTOM TOOLBAR
         mToolbar = (Toolbar) findViewById(R.id.tb_busca);
@@ -77,13 +76,13 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
                 .withActionBarDrawerToggleAnimated(true)
                 .withDrawerGravity(Gravity.LEFT)
                 .withSavedInstance(savedInstanceState)
-                .withSelectedItem(1)
+                .withSelectedItem(3)
                 .withAccountHeader(headerNavegationLeft)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        Toast.makeText(BuscaActivity.this, "Caso "+i, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(BuscaActivity.this, "Caso "+i, Toast.LENGTH_SHORT).show();
                         switch (i) {
                             case 0:
                                 break;
@@ -92,6 +91,7 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
                             case 2:
                                 break;
                             case 3:
+                                Toast.makeText(BuscaActivity.this,"Você está na Busca",Toast.LENGTH_SHORT).show();
                                 break;
                             case 4:
                                 break;
@@ -117,8 +117,8 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
         dataCal.setTime(data);
         int mes = dataCal.get(Calendar.MONTH);
         int ano = dataCal.get(Calendar.YEAR);
-        Log.i("Script", "Mês: " + mes);
-        Log.i("Script", "Ano: " + ano);
+        //Log.i("Script", "Mês: " + mes);
+        //Log.i("Script", "Ano: " + ano);
         List<String> meses = new ArrayList<String>();
         meses.add("Janeiro");
         meses.add("Fevereiro");
@@ -154,7 +154,6 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
 
         adapter = new ArrayAdapter(this,R.layout.simple_list_item,opcoes);
 
-
         listview = (ListView) findViewById(R.id.listViewBusca);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -167,10 +166,16 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
                     case 0:
                         it = new Intent(BuscaActivity.this, BuscaOrigemActivity.class);
                         startActivity(it);
+                        if(Stub2.getDbusca_origem()!=null) {
+                            ((TextView) view).setText(Stub2.getDbusca_origem());
+                        }
                         break;
                     case 1:
                         it = new Intent(BuscaActivity.this, BuscaDestinoActivity.class);
                         startActivity(it);
+                        if(Stub2.getDbusca_destino()!=null) {
+                            ((TextView) view).setText(Stub2.getDbusca_destino());
+                        }
                         break;
                     case 2:
                         popupWindow = popupWindowBuilder(popupListitem1);
@@ -198,8 +203,8 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
         ListView popuplistView = new ListView(this);
 
         // set our adapter and pass our pop up window contents
-        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_list_item,lista);
-        popuplistView.setAdapter(adapter);
+        ArrayAdapter adapter2 = new ArrayAdapter(this,R.layout.simple_list_item,lista);
+        popuplistView.setAdapter(adapter2);
 
         // set the item click listener
         popuplistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
