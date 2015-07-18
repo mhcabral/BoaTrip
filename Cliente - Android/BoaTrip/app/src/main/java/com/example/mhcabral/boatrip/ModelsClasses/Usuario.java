@@ -1,5 +1,10 @@
 package com.example.mhcabral.boatrip.ModelsClasses;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
+import com.example.mhcabral.boatrip.R;
+
 import java.sql.Date;
 
 /**
@@ -15,17 +20,21 @@ public class Usuario {
     private Usuario_funcao funcao;
     private Usuario_status status;
     private Date data_criacao;
+    private Drawable icon;
+    private Context context;
 
-    public Usuario(int id, String nome, String auth_key, String password_hash, String password_reset_token, String email, Usuario_funcao funcao, Usuario_status status, Date data_criacao) {
-        this.id = id;
+    public Usuario(String nome, String email,Context current) {
+        this.id = 0;
         this.nome = nome;
-        this.auth_key = auth_key;
-        this.password_hash = password_hash;
-        this.password_reset_token = password_reset_token;
         this.email = email;
-        this.funcao = funcao;
-        this.status = status;
-        this.data_criacao = data_criacao;
+        this.auth_key = null;
+        this.password_hash = null;
+        this.password_reset_token = null;
+        this.funcao = new Usuario_funcao();
+        this.status = new Usuario_status();
+        this.data_criacao = null;
+        this.context = current;
+        this.icon = context.getResources().getDrawable(R.drawable.account_circle);
     }
 
     public int getId() {
@@ -98,5 +107,13 @@ public class Usuario {
 
     public void setData_criacao(Date data_criacao) {
         this.data_criacao = data_criacao;
+    }
+
+    public Drawable getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Drawable icon) {
+        this.icon = icon;
     }
 }

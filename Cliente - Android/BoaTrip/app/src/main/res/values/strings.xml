@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_busca">Busca</string>
+    <string name="title_activity_base">BaseNavegationDrawerActivity</string>
+    <string name="buttom_busca">Buscar Viagem</string>
+    <string name="title_activity_base_internal">BaseInternalActivity</string>
+    <string name="title_activity_busca_origem">BuscaOrigemActivity</string>
+    <string name="action_busca">Buscar</string>
+    <string name="title_activity_busca_destino">BuscaDestino</string>
 </resources>

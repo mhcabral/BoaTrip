@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mhcabral.boatrip.Activitys.BuscaActivity">
+
+    <include
+        android:id="@+id/tb_busca"
+        layout="@layout/toolbar"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tb_busca"
+        android:layout_centerHorizontal="true">
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="440dp"
+            android:id="@+id/listViewBusca"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/tb_busca"
+            android:gravity="center" />
+
+        <!--<Button
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="@string/buttom_busca"
+            android:textSize="20sp"
+            android:id="@+id/button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/listViewBusca"/>-->
+
+    </LinearLayout>
+
+</RelativeLayout>
