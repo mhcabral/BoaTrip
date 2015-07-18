@@ -8,10 +8,10 @@ public class Usuario_status {
     private String nome;
     private String valor;
 
-    public Usuario_status() {
-        this.id = 0;
-        this.nome = null;
-        this.valor = null;
+    public Usuario_status(int id, String nome, String valor) {
+        this.id = id;
+        this.nome = nome;
+        this.valor = valor;
     }
 
     public int getId() {
