@@ -1,6 +1,5 @@
 package com.example.mhcabral.boatrip.Activitys;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,9 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.example.mhcabral.boatrip.Controllers.Stub2;
-import com.example.mhcabral.boatrip.ModelsClasses.Localidade;
-import com.example.mhcabral.boatrip.ModelsClasses.Uf;
+import com.example.mhcabral.boatrip.ModelsClasses.Usuario;
 import com.example.mhcabral.boatrip.R;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -31,13 +28,14 @@ public class BaseNavegationDrawerActivity extends ActionBarActivity {
     private Drawer navegationDrawerLeft;
     //private Drawer navegationDrawerRight;
     private AccountHeader headerNavegationLeft;
+    private Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_navegation);
 
-        init_stubs(this);
+        user = new Usuario("Novo Usuario","Adicionar Usuario");
 
         //CUSTOM TOOLBAR
         mToolbar = (Toolbar) findViewById(R.id.tb_main);
@@ -127,23 +125,11 @@ public class BaseNavegationDrawerActivity extends ActionBarActivity {
     }
 
     public void init_NavegationDrawerLeft(Drawer navegationDrawerLeft){
-        navegationDrawerLeft.addItem(new ProfileDrawerItem().withName(Stub2.getUser().getNome()).withEmail(Stub2.getUser().getEmail()).withIcon(Stub2.getUser().getIcon()));
+        navegationDrawerLeft.addItem(new ProfileDrawerItem().withName(user.getNome()).withEmail(user.getEmail()).withIcon(getResources().getDrawable(R.drawable.account_circle)));
         navegationDrawerLeft.addItem(new DividerDrawerItem());
         navegationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Promoções").withIcon(getResources().getDrawable(R.mipmap.ic_cart_outline)));
         navegationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Buscar Viagem").withIcon(getResources().getDrawable(R.mipmap.ic_ferry)));
         navegationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Minhas Viagens").withIcon(getResources().getDrawable(R.mipmap.ic_emoticon_cool)));
 
-    }
-
-    protected void init_stubs(Context context){
-        //CRIANDO UM STUB
-        Stub2.initInstance(context);
-        Uf novaUf = new Uf(0,"Amazonas");
-        Localidade novaLocalidade1 = new Localidade(0,"Manaus",novaUf);
-        Stub2.addListlocalidade(novaLocalidade1);
-        Localidade novaLocalidade2 = new Localidade(1,"Tefe",novaUf);
-        Stub2.addListlocalidade(novaLocalidade2);
-        Localidade novaLocalidade3 = new Localidade(2,"Coari",novaUf);
-        Stub2.addListlocalidade(novaLocalidade3);
     }
 }

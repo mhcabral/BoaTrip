@@ -1,9 +1,6 @@
 package com.example.mhcabral.boatrip.ModelsClasses;
 
-import android.content.Context;
 import android.graphics.drawable.Drawable;
-
-import com.example.mhcabral.boatrip.R;
 
 import java.sql.Date;
 
@@ -21,20 +18,10 @@ public class Usuario {
     private Usuario_status status;
     private Date data_criacao;
     private Drawable icon;
-    private Context context;
 
-    public Usuario(String nome, String email,Context current) {
-        this.id = 0;
+    public Usuario(String nome, String email) {
         this.nome = nome;
         this.email = email;
-        this.auth_key = null;
-        this.password_hash = null;
-        this.password_reset_token = null;
-        this.funcao = new Usuario_funcao();
-        this.status = new Usuario_status();
-        this.data_criacao = null;
-        this.context = current;
-        this.icon = context.getResources().getDrawable(R.drawable.account_circle);
     }
 
     public int getId() {
