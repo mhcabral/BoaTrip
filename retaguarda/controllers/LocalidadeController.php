@@ -5,20 +5,59 @@ namespace app\controllers;
 use Yii;
 use app\models\Localidade;
 use app\models\LocalidadeSearch;
+use app\models\PermissionHelpers;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * LocalidadeController implements the CRUD actions for Localidade model.
  */
-class LocalidadeController extends Controller
-{
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
+class LocalidadeController extends Controller {
+	public function behaviors() {
+		return [ 
+				'access' => [ 
+						'class' => \yii\filters\AccessControl::className (),
+						'only' => [ 
+								'index',
+								'view',
+								'create',
+								'update',
+								'delete' 
+						],
+						'rules' => [ 
+								[ 
+										'actions' => [ 
+												'index',
+												'create',
+												'view' 
+										],
+										'allow' => true,
+										'roles' => [ 
+												'@' 
+										],
+										'matchCallback' => function ($rule, $action) {
+											return PermissionHelpers::requireMinimumRole ( 'Admin' ) && PermissionHelpers::requireStatus ( 'Ativo' );
+										} 
+								],
+								[ 
+										'actions' => [ 
+												'update',
+												'delete' 
+										],
+										'allow' => true,
+										'roles' => [ 
+												'@' 
+										],
+										'matchCallback' => function ($rule, $action) {
+											return PermissionHelpers::requireMinimumRole ( 'SuperUser' ) && PermissionHelpers::requireStatus ( 'Ativo' );
+										} 
+								] 
+						] 
+				],
+				'verbs' => [ 
+						'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -117,5 +156,55 @@ class LocalidadeController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function actionMobileIndex()
+    {
+    	\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    	Yii::$app->response->statusCode = 200;
+    	//return [
+    	//		'message' => 'hello world',
+    	//		'code' => 100,
+    	//];
+    	//$models = $command->queryAll();
+    	$models = \app\models\Localidade::find()
+    		->with(['uf'])
+    		->asArray()
+    		->all();
+    
+    	$totalItems=count($models);
+    
+    	//$this->setHeader(200);
+    
+    	//echo json_encode(array('status'=>1,'data'=>$models,'totalItems'=>$totalItems),JSON_PRETTY_PRINT);
+    	return array('status'=>1,'data'=>$models,'totalItems'=>$totalItems);
+    
+    }
+    
+    /* Functions to set header with status code. eg: 200 OK ,400 Bad Request etc..*/
+    private function setHeader($status)
+    {
+    
+    	$status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
+    	$content_type="application/json; charset=utf-8";
+    
+    	header($status_header);
+    	header('Content-type: ' . $content_type);
+    	header('X-Powered-By: ' . "Nintriva <nintriva.com>");
+    }
+    
+    private function _getStatusCodeMessage($status)
+    {
+    	$codes = Array(
+    			200 => 'OK',
+    			400 => 'Bad Request',
+    			401 => 'Unauthorized',
+    			402 => 'Payment Required',
+    			403 => 'Forbidden',
+    			404 => 'Not Found',
+    			500 => 'Internal Server Error',
+    			501 => 'Not Implemented',
+    	);
+    	return (isset($codes[$status])) ? $codes[$status] : '';
     }
 }

@@ -1,0 +1,267 @@
+[14-Jul-2015 23:32:35 America/Manaus] PHP Warning:  PHP Startup: magickwand: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:35 America/Manaus] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:35 America/Manaus] PHP Warning:  PHP Startup: PDO: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:35 America/Manaus] PHP Warning:  PHP Startup: pdo_sqlite: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:35 America/Manaus] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so' - /usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so: undefined symbol: third_arg_force_ref in Unknown on line 0
+[14-Jul-2015 23:32:35 America/Manaus] PHP Warning:  PHP Startup: pdo_mysql: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:35 America/Manaus] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:35 America/Manaus] PHP Parse error:  syntax error, unexpected T_OBJECT_OPERATOR in /home/micro490/public_html/boatrip/web/index.php on line 12
+[14-Jul-2015 23:32:44 America/Manaus] PHP Warning:  PHP Startup: magickwand: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:44 America/Manaus] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:44 America/Manaus] PHP Warning:  PHP Startup: PDO: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:44 America/Manaus] PHP Warning:  PHP Startup: pdo_sqlite: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:44 America/Manaus] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so' - /usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so: undefined symbol: third_arg_force_ref in Unknown on line 0
+[14-Jul-2015 23:32:44 America/Manaus] PHP Warning:  PHP Startup: pdo_mysql: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:44 America/Manaus] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:32:44 America/Manaus] PHP Parse error:  syntax error, unexpected T_OBJECT_OPERATOR in /home/micro490/public_html/boatrip/web/index.php on line 12
+[14-Jul-2015 23:34:17 America/Manaus] PHP Warning:  PHP Startup: magickwand: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:34:17 America/Manaus] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:34:17 America/Manaus] PHP Warning:  PHP Startup: PDO: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:34:17 America/Manaus] PHP Warning:  PHP Startup: pdo_sqlite: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:34:17 America/Manaus] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so' - /usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so: undefined symbol: third_arg_force_ref in Unknown on line 0
+[14-Jul-2015 23:34:17 America/Manaus] PHP Warning:  PHP Startup: pdo_mysql: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:34:17 America/Manaus] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:34:17 America/Manaus] PHP Parse error:  syntax error, unexpected T_OBJECT_OPERATOR in /home/micro490/public_html/boatrip/web/index.php on line 12
+[14-Jul-2015 23:50:24 America/Manaus] PHP Warning:  PHP Startup: magickwand: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:50:24 America/Manaus] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:50:24 America/Manaus] PHP Warning:  PHP Startup: PDO: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:50:24 America/Manaus] PHP Warning:  PHP Startup: pdo_sqlite: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:50:24 America/Manaus] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so' - /usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so: undefined symbol: third_arg_force_ref in Unknown on line 0
+[14-Jul-2015 23:50:24 America/Manaus] PHP Warning:  PHP Startup: pdo_mysql: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:50:24 America/Manaus] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:50:24 America/Manaus] PHP Parse error:  syntax error, unexpected T_OBJECT_OPERATOR in /home/micro490/boatrip/web/index.php on line 12
+[14-Jul-2015 23:54:03 America/Manaus] PHP Warning:  PHP Startup: magickwand: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:54:03 America/Manaus] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:54:03 America/Manaus] PHP Warning:  PHP Startup: PDO: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:54:03 America/Manaus] PHP Warning:  PHP Startup: pdo_sqlite: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:54:03 America/Manaus] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so' - /usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so: undefined symbol: third_arg_force_ref in Unknown on line 0
+[14-Jul-2015 23:54:03 America/Manaus] PHP Warning:  PHP Startup: pdo_mysql: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:54:03 America/Manaus] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:54:03 America/Manaus] PHP Warning:  require_once(/home/micro490/boatrip/web/vendor/yiisoft/yii2/requirements/YiiRequirementChecker.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/micro490/boatrip/web/requirements.php on line 23
+[14-Jul-2015 23:54:03 America/Manaus] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/micro490/boatrip/web/vendor/yiisoft/yii2/requirements/YiiRequirementChecker.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/micro490/boatrip/web/requirements.php on line 23
+[14-Jul-2015 23:58:01 America/Manaus] PHP Warning:  PHP Startup: magickwand: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:01 America/Manaus] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:01 America/Manaus] PHP Warning:  PHP Startup: PDO: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:01 America/Manaus] PHP Warning:  PHP Startup: pdo_sqlite: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:01 America/Manaus] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so' - /usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so: undefined symbol: third_arg_force_ref in Unknown on line 0
+[14-Jul-2015 23:58:01 America/Manaus] PHP Warning:  PHP Startup: pdo_mysql: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:01 America/Manaus] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:01 America/Manaus] PHP Warning:  require_once(/home/micro490/boatrip/web/vendor/yiisoft/yii2/requirements/YiiRequirementChecker.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/micro490/boatrip/web/requirements.php on line 23
+[14-Jul-2015 23:58:01 America/Manaus] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/micro490/boatrip/web/vendor/yiisoft/yii2/requirements/YiiRequirementChecker.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/micro490/boatrip/web/requirements.php on line 23
+[14-Jul-2015 23:58:09 America/Manaus] PHP Warning:  PHP Startup: magickwand: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:09 America/Manaus] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:09 America/Manaus] PHP Warning:  PHP Startup: PDO: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:09 America/Manaus] PHP Warning:  PHP Startup: pdo_sqlite: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:09 America/Manaus] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so' - /usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so: undefined symbol: third_arg_force_ref in Unknown on line 0
+[14-Jul-2015 23:58:09 America/Manaus] PHP Warning:  PHP Startup: pdo_mysql: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:09 America/Manaus] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:09 America/Manaus] PHP Warning:  require_once(/home/micro490/boatrip/web/vendor/yiisoft/yii2/requirements/YiiRequirementChecker.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/micro490/boatrip/web/requirements.php on line 23
+[14-Jul-2015 23:58:09 America/Manaus] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/micro490/boatrip/web/vendor/yiisoft/yii2/requirements/YiiRequirementChecker.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/micro490/boatrip/web/requirements.php on line 23
+[14-Jul-2015 23:58:16 America/Manaus] PHP Warning:  PHP Startup: magickwand: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:16 America/Manaus] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:16 America/Manaus] PHP Warning:  PHP Startup: PDO: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:16 America/Manaus] PHP Warning:  PHP Startup: pdo_sqlite: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:16 America/Manaus] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so' - /usr/local/lib/php/extensions/no-debug-non-zts-20060613/sqlite.so: undefined symbol: third_arg_force_ref in Unknown on line 0
+[14-Jul-2015 23:58:16 America/Manaus] PHP Warning:  PHP Startup: pdo_mysql: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:16 America/Manaus] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20060613
+PHP    compiled with module API=20090626
+These options need to match
+ in Unknown on line 0
+[14-Jul-2015 23:58:16 America/Manaus] PHP Parse error:  syntax error, unexpected T_OBJECT_OPERATOR in /home/micro490/boatrip/web/index.php on line 12
+[15-Jul-2015 00:07:34] PHP Warning:  Unexpected character in input:  '\' (ASCII=92) state=1 in /home/micro490/boatrip/web/index.php on line 12
+[15-Jul-2015 00:07:34] PHP Parse error:  syntax error, unexpected T_STRING in /home/micro490/boatrip/web/index.php on line 12
+[15-Jul-2015 00:07:50] PHP Warning:  Unexpected character in input:  '\' (ASCII=92) state=1 in /home/micro490/boatrip/web/index.php on line 12
+[15-Jul-2015 00:07:50] PHP Parse error:  syntax error, unexpected T_STRING in /home/micro490/boatrip/web/index.php on line 12
+[15-Jul-2015 00:08:04] PHP Warning:  Unexpected character in input:  '\' (ASCII=92) state=1 in /home/micro490/boatrip/web/index.php on line 12
+[15-Jul-2015 00:08:04] PHP Parse error:  syntax error, unexpected T_STRING in /home/micro490/boatrip/web/index.php on line 12
+[15-Jul-2015 00:11:42] PHP Warning:  Unexpected character in input:  '\' (ASCII=92) state=1 in /home/micro490/boatrip/web/index.php on line 12
+[15-Jul-2015 00:11:42] PHP Parse error:  syntax error, unexpected T_STRING in /home/micro490/boatrip/web/index.php on line 12

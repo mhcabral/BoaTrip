@@ -6,6 +6,7 @@ use Yii;
 use app\models\Barco;
 use app\models\BarcoSearch;
 use app\models\UploadForm;
+use app\models\PermissionHelpers;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,20 +15,60 @@ use yii\web\UploadedFile;
 /**
  * BarcoController implements the CRUD actions for Barco model.
  */
-class BarcoController extends Controller
-{
-	
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
+class BarcoController extends Controller {
+	public function behaviors() {
+		return [ 
+				
+				'access' => [ 
+						'class' => \yii\filters\AccessControl::className (),
+						'only' => [ 
+								'index',
+								'view',
+								'create',
+								'update',
+								'delete' 
+						],
+						'rules' => [ 
+								[ 
+										'actions' => [ 
+												'index',
+												'create',
+												'view' 
+										],
+										'allow' => true,
+										'roles' => [ 
+												'@' 
+										],
+										'matchCallback' => function ($rule, $action) {
+											return PermissionHelpers::requireMinimumRole ( 'Admin' ) && PermissionHelpers::requireStatus ( 'Ativo' );
+										} 
+								],
+								[ 
+										'actions' => [ 
+												'update',
+												'delete' 
+										],
+										'allow' => true,
+										'roles' => [ 
+												'@' 
+										],
+										'matchCallback' => function ($rule, $action) {
+											return PermissionHelpers::requireMinimumRole ( 'SuperUser' ) && PermissionHelpers::requireStatus ( 'Ativo' );
+										} 
+								] 
+						] 
+				],
+				
+				'verbs' => [ 
+						'class' => VerbFilter::className (),
+						'actions' => [ 
+								'delete' => [ 
+										'post' 
+								] 
+						] 
+				] 
+		];
+	}
 
     /**
      * Lists all Barco models.

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -15,12 +16,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'pass')->passwordInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'type')->dropDownList([ 'passageiro' => 'Passageiro', 'empresario' => 'Empresario', 'admin' => 'Admin', ], ['prompt' => '']) ?>
-
-    <?= $form->field($model, 'data_entrada')->textInput(['readonly' => true]) ?>
+    
+    <?php $roleArray = ArrayHelper::map(\app\models\Role::find()->orderBy('role_name')->all(), 'id', 'role_name')?>
+    <?=	$form->field($model, 'role_id')->dropDownList($roleArray, ['prompt' => '---- Selecione um Perfil ----'])->label('Perfil')?>
+    
+     <?php $statusArray = ArrayHelper::map(\app\models\Status::find()->orderBy('status_name')->all(), 'id', 'status_name')?>
+    <?=	$form->field($model, 'status_id')->dropDownList($statusArray, ['prompt' => '---- Selecione um Status ----'])->label('Status')?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

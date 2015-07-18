@@ -30,37 +30,34 @@ FontAwesomeAsset::register($this);
 <?php $this->beginBody() ?>
     <div class="wrap">
         <?php
-	        if (!Yii::$app->user->isGuest) {
+	        if (!Yii::$app->user->isGuest){
 	        	$is_admin = PermissionHelpers::requireMinimumRole('Admin');
-	        	$is_empresa = PermissionHelpers::requireMinimumRole('Empresa');
-	        	$is_passageiro = PermissionHelpers::requireMinimumRole('Passageiro');
+	        	NavBar::begin([
+	        		'brandLabel' => 'Yii 2 Build <i class="fa fa-plug"></i> Admin',
+	        		'brandUrl' => Yii::$app->homeUrl,
+	        		'options' => ['class' => 'navbar-inverse navbar-fixed-top',],
+	        	]);
+	        } else {
+	        	NavBar::begin([
+	        		'brandLabel' => 'Yii 2 Build <i class="fa fa-plug"></i>',
+	        		'brandUrl' => Yii::$app->homeUrl,
+	        		'options' => ['class' => 'navbar-inverse navbar-fixed-top',],
+	        	]);
+	        	
+	        	
+	        	$menuItems = [
+	        		['label' => 'Home', 'url' => ['site/index']],];
 	        }
-	        NavBar::begin([
-				'brandLabel' => 'Boatrip',
-				'brandUrl' => Yii::$app->homeUrl,
-				'options' => [
-				'class' => 'navbar-inverse navbar-fixed-top',
-				],
-			]);
-	        
-	        $menuItems = [
-	        		['label' => 'Home', 'url' => ['/site/index']],
-	        		['label' => 'About', 'url' => ['/site/about']],
-	        		['label' => 'Contact', 'url' => ['/site/contact']],
-	        		
-	        ];
-	        
-	        
 	        
 	        if (!Yii::$app->user->isGuest && $is_admin) {
 	        	$menuItems[] = ['label' => 'Users', 'url' => ['user/index']];
-	        	$menuItems[] = ['label' => 'Profile', 'url' => ['profile/index']];
+	        	$menuItems[] = ['label' => 'Profiles', 'url' => ['profile/index']];
 	        	$menuItems[] = ['label' => 'Roles', 'url' => ['role/index']];
-	        	$menuItems[] = ['label' => 'Status', 'url' => ['status/index']];
+	        	$menuItems[] = ['label' => 'User Types', 'url' => ['user-type/index']];
+	        	$menuItems[] = ['label' => 'Statuses', 'url' => ['status/index']];
 	        }
 	        if (Yii::$app->user->isGuest) {
 	        	$menuItems[] = ['label' => 'Login', 'url' => ['site/login']];
-	        	$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
 	        } else {
 	        	$menuItems[] = [
 	        		'label' => 'Logout (' . Yii::$app->user->identity->username . ')',

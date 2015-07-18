@@ -40,7 +40,7 @@ class Genero extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'genero_nome' => 'Genero Nome',
+            'genero_nome' => 'Gênero',
         ];
     }
 

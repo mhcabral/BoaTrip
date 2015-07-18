@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Uf;
 use app\models\UfSearch;
+use app\models\PermissionHelpers;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,13 +13,50 @@ use yii\filters\VerbFilter;
 /**
  * UfController implements the CRUD actions for Uf model.
  */
-class UfController extends Controller
-{
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
+class UfController extends Controller {
+	public function behaviors() {
+		return [ 
+				'access' => [ 
+						'class' => \yii\filters\AccessControl::className (),
+						'only' => [ 
+								'index',
+								'view',
+								'create',
+								'update',
+								'delete' 
+						],
+						'rules' => [ 
+								[ 
+										'actions' => [ 
+												'index',
+												'create',
+												'view' 
+										],
+										'allow' => true,
+										'roles' => [ 
+												'@' 
+										],
+										'matchCallback' => function ($rule, $action) {
+											return PermissionHelpers::requireMinimumRole ( 'Admin' ) && PermissionHelpers::requireStatus ( 'Ativo' );
+										} 
+								],
+								[ 
+										'actions' => [ 
+												'update',
+												'delete' 
+										],
+										'allow' => true,
+										'roles' => [ 
+												'@' 
+										],
+										'matchCallback' => function ($rule, $action) {
+											return PermissionHelpers::requireMinimumRole ( 'SuperUser' ) && PermissionHelpers::requireStatus ( 'Ativo' );
+										} 
+								] 
+						] 
+				],
+				'verbs' => [ 
+						'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
