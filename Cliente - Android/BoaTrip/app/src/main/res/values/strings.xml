@@ -10,4 +10,5 @@
     <string name="title_activity_busca_origem">BuscaOrigemActivity</string>
     <string name="action_busca">Buscar</string>
     <string name="title_activity_busca_destino">BuscaDestino</string>
+    <string name="title_activity_inicial">InicialActivity</string>
 </resources>

@@ -1,14 +1,13 @@
 package com.example.mhcabral.boatrip.ModelsClasses;
 
-import java.sql.Date;
 
 /**
  * Created by mhcabral on 07/07/15.
  */
 public class Viagem {
     private int id;
-    private Date data_saida;
-    private Date data_chegada;
+    private String data_saida;
+    private String data_chegada;
     private float valor;
     private float valor_desconto;
     private String percurso;
@@ -16,10 +15,10 @@ public class Viagem {
     private Localidade destino;
     private Barco barco;
 
-    public Viagem(int id, Date data_saida, Date data_chegada, float valor, float valor_desconto, String percurso, Localidade origem, Localidade destino, Barco barco) {
+    public Viagem(int id, long data_saida, long data_chegada, float valor, float valor_desconto, String percurso, Localidade origem, Localidade destino, Barco barco) {
         this.id = id;
-        this.data_saida = data_saida;
-        this.data_chegada = data_chegada;
+        this.data_saida = String.valueOf(data_saida);
+        this.data_chegada = String.valueOf(data_chegada);
         this.valor = valor;
         this.valor_desconto = valor_desconto;
         this.percurso = percurso;
@@ -36,19 +35,19 @@ public class Viagem {
         this.id = id;
     }
 
-    public Date getData_saida() {
+    public String getData_saida() {
         return data_saida;
     }
 
-    public void setData_saida(Date data_saida) {
+    public void setData_saida(String data_saida) {
         this.data_saida = data_saida;
     }
 
-    public Date getData_chegada() {
+    public String getData_chegada() {
         return data_chegada;
     }
 
-    public void setData_chegada(Date data_chegada) {
+    public void setData_chegada(String data_chegada) {
         this.data_chegada = data_chegada;
     }
 

@@ -1,27 +1,38 @@
 package com.example.mhcabral.boatrip.Activitys;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.mhcabral.boatrip.Controllers.Listfragment;
 import com.example.mhcabral.boatrip.Controllers.Stub2;
+import com.example.mhcabral.boatrip.ModelsClasses.Barco;
+import com.example.mhcabral.boatrip.ModelsClasses.Viagem;
 import com.example.mhcabral.boatrip.R;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,19 +45,19 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
     private Toolbar mToolbar;
     private Drawer navegationDrawerLeft;
     private AccountHeader headerNavegationLeft;
-    private ArrayList<String> opcoes;
-    private ArrayAdapter adapter;
-    private ListView listview;
-    private Intent it;
-    PopupWindow popupWindow;
-    private String result;
+    //private ArrayList<String> opcoes;
+    //private ArrayAdapter adapter;
+    //private ListView listview;
+    //private Intent it;
+    private static PopupWindow popupWindow;
+    //private String result;
+
+    private static RequestQueue rq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busca);
-
-        init_stubs(this);
 
         //CUSTOM TOOLBAR
         mToolbar = (Toolbar) findViewById(R.id.tb_busca);
@@ -111,41 +122,11 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
 
         init_NavegationDrawerLeft(navegationDrawerLeft);
 
-        //SETANDO LISTA DO POPUPLIST 1
-        Date data = new Date();
-        GregorianCalendar dataCal = new GregorianCalendar();
-        dataCal.setTime(data);
-        int mes = dataCal.get(Calendar.MONTH);
-        int ano = dataCal.get(Calendar.YEAR);
-        //Log.i("Script", "Mês: " + mes);
-        //Log.i("Script", "Ano: " + ano);
-        List<String> meses = new ArrayList<String>();
-        meses.add("Janeiro");
-        meses.add("Fevereiro");
-        meses.add("Março");
-        meses.add("Abril");
-        meses.add("Maio");
-        meses.add("Junho");
-        meses.add("Julho");
-        meses.add("Agosto");
-        meses.add("Setembro");
-        meses.add("Outubro");
-        meses.add("Novembro");
-        meses.add("Dezembro");
-
-        final List<String> popupListitem1 = new ArrayList<String>();
-        int i;
-        for(i=0;i<12;i++) {
-            if(mes > 11){
-                mes = 0;
-                ano++;
-            }
-            String frase = meses.get(mes)+"/"+String.valueOf(ano);
-            popupListitem1.add(frase);
-            mes++;
-        }
+        List<String> popuplist = createPopupListItem();
+        popupWindow = popupWindowBuilder(popuplist);
 
         //SETAR LISTVIEW
+        /*
         opcoes = new ArrayList<>();
         opcoes.add("De onde vou sair");
         opcoes.add("Para onde vou");
@@ -191,41 +172,19 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
             }
 
         });
+        */
 
-    }
+        //SETANDO UMA LISTA DE FRAGMENTS
+        Listfragment frag = (Listfragment) getSupportFragmentManager().findFragmentByTag("mainFrag");
+        if(frag == null) {
+            frag = new Listfragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
+            ft.commit();
+        }
+        Listfragment.setLastposition(-1);
 
-    private PopupWindow popupWindowBuilder(final List<String> lista) {
-
-        // initialize a pop up window type
-        final PopupWindow popupWindow = new PopupWindow(this);
-
-        // the drop down list is a list view
-        ListView popuplistView = new ListView(this);
-
-        // set our adapter and pass our pop up window contents
-        ArrayAdapter adapter2 = new ArrayAdapter(this,R.layout.simple_list_item,lista);
-        popuplistView.setAdapter(adapter2);
-
-        // set the item click listener
-        popuplistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                result = lista.get(position);
-                popupWindow.dismiss();
-            }
-        });
-
-        // some other visual settings
-        popupWindow.setFocusable(true);
-        popupWindow.setWidth(700);
-        popupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-        popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.fundo_branco));
-
-        // set the list view as pop up window content
-        popupWindow.setContentView(popuplistView);
-
-        return popupWindow;
+        rq = Volley.newRequestQueue(BuscaActivity.this);
     }
 
 
@@ -234,5 +193,146 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_busca, menu);
         return true;
+    }
+
+    public List<String> getSetProfileList(){
+        List<String> listAux = new ArrayList<String>();
+        listAux.add("De onde vou sair");
+        listAux.add("Para onde vou");
+        listAux.add("Selecione o mês");
+        listAux.add("Buscar");
+        return(listAux);
+    }
+
+    public PopupWindow popupWindowBuilder(final List<String> lista) {
+
+        // initialize a pop up window type
+        final PopupWindow popupWindow = new PopupWindow(this);
+
+        // the drop down list is a list view
+        ListView popuplistView = new ListView(this);
+
+        // set our adapter and pass our pop up window contents
+        ArrayAdapter adapter2 = new ArrayAdapter(this, R.layout.simple_list_item,lista);
+        popuplistView.setAdapter(adapter2);
+
+        // set the item click listener
+        popuplistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Stub2.setMesAno(lista.get(position));
+                popupWindow.dismiss();
+            }
+        });
+
+        // some other visual settings
+        popupWindow.setFocusable(true);
+        popupWindow.setWidth(800);
+        popupWindow.setHeight(800);
+        popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.fundo_branco));
+
+        // set the list view as pop up window content
+        popupWindow.setContentView(popuplistView);
+
+        return popupWindow;
+    }
+
+    public static List<String> createPopupListItem(){
+        //SETANDO LISTA DO POPUPLIST 1
+        Date data = new Date();
+        GregorianCalendar dataCal = new GregorianCalendar();
+        dataCal.setTime(data);
+        int mes = dataCal.get(Calendar.MONTH);
+        int ano = dataCal.get(Calendar.YEAR);
+        //Log.i("Script", "Mês: " + mes);
+        //Log.i("Script", "Ano: " + ano);
+        List<String> meses = new ArrayList<String>();
+        meses.add("Janeiro");
+        meses.add("Fevereiro");
+        meses.add("Março");
+        meses.add("Abril");
+        meses.add("Maio");
+        meses.add("Junho");
+        meses.add("Julho");
+        meses.add("Agosto");
+        meses.add("Setembro");
+        meses.add("Outubro");
+        meses.add("Novembro");
+        meses.add("Dezembro");
+
+        final List<String> popupListitem1 = new ArrayList<String>();
+        int i;
+        for(i=0;i<12;i++) {
+            if(mes > 11){
+                mes = 0;
+                ano++;
+            }
+            String frase = meses.get(mes)+String.valueOf(ano);
+            popupListitem1.add(frase);
+            mes++;
+        }
+        return  popupListitem1;
+    }
+
+    public static PopupWindow getPopupWindow() {
+        return popupWindow;
+    }
+
+    public static void setPopupWindow(PopupWindow popupWindow) {
+        BuscaActivity.popupWindow = popupWindow;
+    }
+
+    public static void callByJsonObjectRequestViagem(String url) {
+
+        JsonObjectRequest request = new JsonObjectRequest
+                (Request.Method.GET, url, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        JSONArray dataArray = null;
+                        Log.i("ScriptViagem", "Response: " + response);
+                        try {
+                            Log.i("ScriptViagem","Total Items: "+ response.get("totalItems").toString());
+                            //Log.i("Script","Data :" + response.getJSONArray("data"));
+                            dataArray = response.getJSONArray("data");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        int i,j, idBarco;
+                        Barco barcoBuscado = null;
+                        try {
+                            for(i=0;i<Integer.parseInt(response.get("totalItems").toString());i++){
+                                Log.i("ScriptViagem","Data "+i+": "+dataArray.getJSONObject(i));
+                                JSONObject subobject = dataArray.getJSONObject(i);
+                                for(j=0;j<Stub2.getListbarcos().size();j++){
+                                    idBarco = Integer.parseInt(subobject.getString("barco_id"));
+                                    if(idBarco == Stub2.getListbarcos().get(i).getId()){
+                                       barcoBuscado  = Stub2.getListbarcos().get(i);
+                                    }
+                                }
+                                Log.i("ScriptViagem","Barco "+i+": "+barcoBuscado.getNome());
+                                Viagem novaViagem = new Viagem(Integer.parseInt(subobject.getString("id")),Date.parse(subobject.getString("data_saida")),Date.parse(subobject.getString("data_chegada")),Float.valueOf(subobject.getString("valor")),Float.valueOf(subobject.getString("valor_desconto")),subobject.getString("percurso"),Stub2.getOrigemBuscado(),Stub2.getDestinoBuscado(),barcoBuscado);
+                                Stub2.addListviagens(novaViagem);
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("ScriptViagem", "Error: " + error.getMessage());
+                        Stub2.setErroBusca(error.getMessage());
+                        //Toast.makeText(BuscaActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(BuscaActivity.this, "Servidor indisponivel", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        request.getBody();
+        rq.add(request);
     }
 }

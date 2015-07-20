@@ -72,8 +72,10 @@ public class BuscaDestinoActivity extends BaseInternalActivity {
                 listview.setAdapter(null);
                 int i;
                 for(i=0;i< Stub2.getListlocalidade().size();i++) {
-                    if (Stub2.getListlocalidade().get(i).getNome().equalsIgnoreCase(query)) {
+                    if (Stub2.getListlocalidade().get(i).getNome().toLowerCase().contains(query.toLowerCase())) {
                         resultados.add(Stub2.getListlocalidade().get(i).getNome());
+                        Stub2.setIdbusca_destino(Stub2.getListlocalidade().get(i).getId());
+                        Stub2.setDestinoBuscado(Stub2.getListlocalidade().get(i));
                         found = true;
                         break;
                     }
