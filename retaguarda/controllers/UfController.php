@@ -50,7 +50,7 @@ class UfController extends Controller {
 												'@' 
 										],
 										'matchCallback' => function ($rule, $action) {
-											return PermissionHelpers::requireMinimumRole ( 'SuperUser' ) && PermissionHelpers::requireStatus ( 'Ativo' );
+											return PermissionHelpers::requireMinimumRole ( 'Admin' ) && PermissionHelpers::requireStatus ( 'Ativo' );
 										} 
 								] 
 						] 

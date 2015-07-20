@@ -51,7 +51,7 @@ class LocalidadeController extends Controller {
 												'@' 
 										],
 										'matchCallback' => function ($rule, $action) {
-											return PermissionHelpers::requireMinimumRole ( 'SuperUser' ) && PermissionHelpers::requireStatus ( 'Ativo' );
+											return PermissionHelpers::requireMinimumRole ( 'Admin' ) && PermissionHelpers::requireStatus ( 'Ativo' );
 										} 
 								] 
 						] 
@@ -179,32 +179,5 @@ class LocalidadeController extends Controller {
     	//echo json_encode(array('status'=>1,'data'=>$models,'totalItems'=>$totalItems),JSON_PRETTY_PRINT);
     	return array('status'=>1,'data'=>$models,'totalItems'=>$totalItems);
     
-    }
-    
-    /* Functions to set header with status code. eg: 200 OK ,400 Bad Request etc..*/
-    private function setHeader($status)
-    {
-    
-    	$status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
-    	$content_type="application/json; charset=utf-8";
-    
-    	header($status_header);
-    	header('Content-type: ' . $content_type);
-    	header('X-Powered-By: ' . "Nintriva <nintriva.com>");
-    }
-    
-    private function _getStatusCodeMessage($status)
-    {
-    	$codes = Array(
-    			200 => 'OK',
-    			400 => 'Bad Request',
-    			401 => 'Unauthorized',
-    			402 => 'Payment Required',
-    			403 => 'Forbidden',
-    			404 => 'Not Found',
-    			500 => 'Internal Server Error',
-    			501 => 'Not Implemented',
-    	);
-    	return (isset($codes[$status])) ? $codes[$status] : '';
     }
 }
