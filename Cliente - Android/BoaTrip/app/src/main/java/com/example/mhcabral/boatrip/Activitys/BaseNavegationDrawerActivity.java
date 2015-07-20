@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.example.mhcabral.boatrip.ModelsClasses.Usuario;
+import com.example.mhcabral.boatrip.Controllers.Stub2;
 import com.example.mhcabral.boatrip.R;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -28,14 +28,11 @@ public class BaseNavegationDrawerActivity extends ActionBarActivity {
     private Drawer navegationDrawerLeft;
     //private Drawer navegationDrawerRight;
     private AccountHeader headerNavegationLeft;
-    private Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_navegation);
-
-        user = new Usuario("Novo Usuario","Adicionar Usuario");
 
         //CUSTOM TOOLBAR
         mToolbar = (Toolbar) findViewById(R.id.tb_main);
@@ -125,7 +122,7 @@ public class BaseNavegationDrawerActivity extends ActionBarActivity {
     }
 
     public void init_NavegationDrawerLeft(Drawer navegationDrawerLeft){
-        navegationDrawerLeft.addItem(new ProfileDrawerItem().withName(user.getNome()).withEmail(user.getEmail()).withIcon(getResources().getDrawable(R.drawable.account_circle)));
+        navegationDrawerLeft.addItem(new ProfileDrawerItem().withName(Stub2.getUser().getNome()).withEmail(Stub2.getUser().getEmail()).withIcon(Stub2.getUser().getIcon()));
         navegationDrawerLeft.addItem(new DividerDrawerItem());
         navegationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Promoções").withIcon(getResources().getDrawable(R.mipmap.ic_cart_outline)));
         navegationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Buscar Viagem").withIcon(getResources().getDrawable(R.mipmap.ic_ferry)));

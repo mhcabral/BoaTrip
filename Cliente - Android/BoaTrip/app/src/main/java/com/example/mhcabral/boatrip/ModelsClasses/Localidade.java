@@ -9,6 +9,13 @@ public class Localidade {
     private Uf uf;
     private String localidade_url;
 
+    public Localidade(int id,String nome, Uf uf) {
+        this.id = id;
+        this.nome = nome;
+        this.uf = uf;
+        this.localidade_url = "";
+    }
+
     public Localidade(int id, String nome, Uf uf, String localidade_url) {
         this.id = id;
         this.nome = nome;

@@ -1,5 +1,6 @@
 package com.example.mhcabral.boatrip.ModelsClasses;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,11 +13,11 @@ public class Barco {
     private int numero_tripulantes;
     private List<Barco_foto> fotos;
 
-    public Barco(int id, String nome, String descricao, List<Barco_foto> fotos, int numero_tripulantes) {
+    public Barco(int id, String nome, String descricao, int numero_tripulantes) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.fotos = fotos;
+        this.fotos = new ArrayList<Barco_foto>();
         this.numero_tripulantes = numero_tripulantes;
     }
 
@@ -58,5 +59,9 @@ public class Barco {
 
     public void setFotos(List<Barco_foto> fotos) {
         this.fotos = fotos;
+    }
+
+    public void addFotos(Barco_foto foto){
+        this.fotos.add(foto);
     }
 }
