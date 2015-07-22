@@ -37,7 +37,7 @@ class UserSearch extends User
            
                 [['id', 'role_id', 'status_id'], 'integer'],
                 [['username', 'email', 'created_at', 'updated_at', 'roleName', 
-                 'statusName', 'profileId', 
+                 'statusName', 'profileId' 
                  ], 'safe'],
            ];
     }

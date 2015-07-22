@@ -160,7 +160,7 @@ class LocalidadeController extends Controller {
     
     public function actionMobileIndex()
     {
-    	\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    	Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     	Yii::$app->response->statusCode = 200;
     	//return [
     	//		'message' => 'hello world',

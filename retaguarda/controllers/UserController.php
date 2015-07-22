@@ -6,9 +6,11 @@ use Yii;
 use app\models\User;
 use app\models\UserSearch;
 use app\models\PermissionHelpers;
+use app\models\LoginForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Profile;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -142,5 +144,29 @@ class UserController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function actionMobileLogin()
+    {
+    	Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    	Yii::$app->response->statusCode = 200;
+    	
+    	$params=$_REQUEST;
+    	
+    	if ((($username = $_REQUEST['username']) !== null) && (!empty($password = $_REQUEST['password']))) {
+	    	if (($model = User::findByUsername($username)) !== null) {
+	    
+		    	if ($model->validatePassword($password)) {
+		    		if (($profile = $model->profile) !== null) {
+		    			return array('status'=> 1, 'data'=> $profile);
+		    		}
+		    		return array('status'=> 2, 'data'=>'');
+		    	} else {
+		    		return array('status'=> 0, 'data'=>'');
+		    	}
+	    	}
+    	} 
+    	
+    	return array('status'=> 0, 'data'=>'');
     }
 }
