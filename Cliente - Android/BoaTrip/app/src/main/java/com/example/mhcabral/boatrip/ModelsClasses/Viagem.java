@@ -15,10 +15,10 @@ public class Viagem {
     private Localidade destino;
     private Barco barco;
 
-    public Viagem(int id, long data_saida, long data_chegada, float valor, float valor_desconto, String percurso, Localidade origem, Localidade destino, Barco barco) {
+    public Viagem(int id, String data_saida, String data_chegada, float valor, float valor_desconto, String percurso, Localidade origem, Localidade destino, Barco barco) {
         this.id = id;
-        this.data_saida = String.valueOf(data_saida);
-        this.data_chegada = String.valueOf(data_chegada);
+        this.data_saida = data_saida;
+        this.data_chegada = data_chegada;
         this.valor = valor;
         this.valor_desconto = valor_desconto;
         this.percurso = percurso;

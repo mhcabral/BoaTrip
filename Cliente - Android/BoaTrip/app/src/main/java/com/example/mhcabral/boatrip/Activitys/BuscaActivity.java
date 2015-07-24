@@ -1,9 +1,9 @@
 package com.example.mhcabral.boatrip.Activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -13,26 +13,15 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mhcabral.boatrip.Controllers.Listfragment;
 import com.example.mhcabral.boatrip.Controllers.Stub2;
-import com.example.mhcabral.boatrip.ModelsClasses.Barco;
-import com.example.mhcabral.boatrip.ModelsClasses.Viagem;
 import com.example.mhcabral.boatrip.R;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,7 +32,7 @@ import java.util.List;
 public class BuscaActivity extends BaseNavegationDrawerActivity {
 
     private Toolbar mToolbar;
-    private Drawer navegationDrawerLeft;
+    private static Drawer navegationDrawerLeft;
     private AccountHeader headerNavegationLeft;
     //private ArrayList<String> opcoes;
     //private ArrayAdapter adapter;
@@ -51,8 +40,6 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
     //private Intent it;
     private static PopupWindow popupWindow;
     //private String result;
-
-    private static RequestQueue rq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +83,8 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
                         //Toast.makeText(BuscaActivity.this, "Caso "+i, Toast.LENGTH_SHORT).show();
                         switch (i) {
                             case 0:
+                                Intent it = new Intent(BuscaActivity.this, LoginActivity.class);
+                                startActivity(it);
                                 break;
                             case 1:
                                 break;
@@ -182,9 +171,9 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
             ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
             ft.commit();
         }
-        Listfragment.setLastposition(-1);
+        frag.setLastposition(-1);
 
-        rq = Volley.newRequestQueue(BuscaActivity.this);
+        frag.setRq(Volley.newRequestQueue(BuscaActivity.this));
     }
 
 
@@ -283,56 +272,11 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
         BuscaActivity.popupWindow = popupWindow;
     }
 
-    public static void callByJsonObjectRequestViagem(String url) {
+    public static Drawer getNavegationDrawerLeft() {
+        return navegationDrawerLeft;
+    }
 
-        JsonObjectRequest request = new JsonObjectRequest
-                (Request.Method.GET, url, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        JSONArray dataArray = null;
-                        Log.i("ScriptViagem", "Response: " + response);
-                        try {
-                            Log.i("ScriptViagem","Total Items: "+ response.get("totalItems").toString());
-                            //Log.i("Script","Data :" + response.getJSONArray("data"));
-                            dataArray = response.getJSONArray("data");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        int i,j, idBarco;
-                        Barco barcoBuscado = null;
-                        try {
-                            for(i=0;i<Integer.parseInt(response.get("totalItems").toString());i++){
-                                Log.i("ScriptViagem","Data "+i+": "+dataArray.getJSONObject(i));
-                                JSONObject subobject = dataArray.getJSONObject(i);
-                                for(j=0;j<Stub2.getListbarcos().size();j++){
-                                    idBarco = Integer.parseInt(subobject.getString("barco_id"));
-                                    if(idBarco == Stub2.getListbarcos().get(i).getId()){
-                                       barcoBuscado  = Stub2.getListbarcos().get(i);
-                                    }
-                                }
-                                Log.i("ScriptViagem","Barco "+i+": "+barcoBuscado.getNome());
-                                Viagem novaViagem = new Viagem(Integer.parseInt(subobject.getString("id")),Date.parse(subobject.getString("data_saida")),Date.parse(subobject.getString("data_chegada")),Float.valueOf(subobject.getString("valor")),Float.valueOf(subobject.getString("valor_desconto")),subobject.getString("percurso"),Stub2.getOrigemBuscado(),Stub2.getDestinoBuscado(),barcoBuscado);
-                                Stub2.addListviagens(novaViagem);
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.i("ScriptViagem", "Error: " + error.getMessage());
-                        Stub2.setErroBusca(error.getMessage());
-                        //Toast.makeText(BuscaActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                        //Toast.makeText(BuscaActivity.this, "Servidor indisponivel", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        request.getBody();
-        rq.add(request);
+    public static void setNavegationDrawerLeft(Drawer navegationDrawerLeft) {
+        BuscaActivity.navegationDrawerLeft = navegationDrawerLeft;
     }
 }

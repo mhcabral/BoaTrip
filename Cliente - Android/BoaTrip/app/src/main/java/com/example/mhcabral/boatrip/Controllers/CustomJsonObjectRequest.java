@@ -31,7 +31,7 @@ public class CustomJsonObjectRequest extends Request<JSONObject> {
     }
 
     public CustomJsonObjectRequest(String url,Map<String, String> params, Listener<JSONObject> response, ErrorListener listener){
-        super(Method.GET,url,listener);
+        super(Method.POST,url,listener);
         this.params = params;
         this.response = response;
 

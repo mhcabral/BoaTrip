@@ -81,18 +81,16 @@ public class InicialActivity extends ActionBarActivity {
 
     protected void init_stubs(Context context){
         //CRIANDO UM STUB
-        pb.setMax(100);
+        pb.setMax(1000);
         pb.setProgress(0);
         Stub2.initInstance(context);
-        callByJsonObjectRequestLocalidade("http://boatrip.microben.com.br/index.php?r=localidade/mobile-index");
-        callByJsonObjectRequestBarco("http://boatrip.microben.com.br/index.php?r=barco/mobile-index");
         int i;
-        for(i=0;i<100;i++) {
-            //Log.i("SProgress","Progress: "+i);
+        for(i=0;i<200;i++){
             pb.setProgress(i);
         }
-        Intent it = new Intent(this, BuscaActivity.class);
-        startActivity(it);
+        //Stub2.setPrefix_url();
+        callByJsonObjectRequestLocalidade(Stub2.getPrefix_url() + "/index.php?r=localidade/mobile-index");
+        callByJsonObjectRequestBarco(Stub2.getPrefix_url() + "/index.php?r=barco/mobile-index");
 
 
 
@@ -137,6 +135,7 @@ public class InicialActivity extends ActionBarActivity {
                                 //Log.i("ScriptLocalidade","Localidade-id: "+novaLocalidade.getId()+" Localidade-nome: "+novaLocalidade.getNome());
                                 Stub2.addListlocalidade(novaLocalidade);
                             }
+                            pb.setProgress(500);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -181,6 +180,9 @@ public class InicialActivity extends ActionBarActivity {
                                 Barco novoBarco = new Barco(Integer.parseInt(subobject.getString("id")),subobject.getString("nome"),subobject.getString("descricao"),Integer.parseInt(subobject.getString("tripulantes")));
                                 Stub2.addListbarcos(novoBarco);
                             }
+                            pb.setProgress(1000);
+                            Intent it = new Intent(InicialActivity.this, BuscaActivity.class);
+                            startActivity(it);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

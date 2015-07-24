@@ -24,11 +24,12 @@ public class Stub2 {
     private static String dbusca_destino;
     private static int idbusca_destino;
     private static String mesAno;
-    private static String erroBusca;
+    private static boolean erroBusca;
     private static List<Viagem> listviagens;
     private static List<Barco> listbarcos;
     private static Localidade origemBuscado;
     private static Localidade destinoBuscado;
+    private static String prefix_url;
 
     public static void initInstance(Context current) {
         if (instance == null) {
@@ -41,10 +42,11 @@ public class Stub2 {
             dbusca_destino = null;
             idbusca_origem = 0;
             idbusca_destino = 0;
-            erroBusca = null;
+            erroBusca = false;
             mesAno = null;
             listviagens = new ArrayList<Viagem>();
             listbarcos = new ArrayList<Barco>();
+            prefix_url = "http://boatrip.microben.com.br";
         }
     }
 
@@ -164,11 +166,19 @@ public class Stub2 {
         Stub2.destinoBuscado = destinoBuscado;
     }
 
-    public static String getErroBusca() {
+    public static boolean getErroBusca() {
         return erroBusca;
     }
 
-    public static void setErroBusca(String erroBusca) {
+    public static void setErroBusca(boolean erroBusca) {
         Stub2.erroBusca = erroBusca;
+    }
+
+    public static String getPrefix_url() {
+        return prefix_url;
+    }
+
+    public static void setPrefix_url(String prefix_url) {
+        Stub2.prefix_url = prefix_url;
     }
 }
