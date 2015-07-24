@@ -51,7 +51,7 @@ class ViagemController extends Controller
 												'@' 
 										],
 										'matchCallback' => function ($rule, $action) {
-											return PermissionHelpers::requireMinimumRole ( 'SuperUser' ) && PermissionHelpers::requireStatus ( 'Ativo' );
+											return PermissionHelpers::requireMinimumRole ( 'Admin' ) && PermissionHelpers::requireStatus ( 'Ativo' );
 										} 
 								] 
 						] 
@@ -158,5 +158,24 @@ class ViagemController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function actionMobileFind($l1,$l2,$ma)
+    {
+    	$meses = array('Janeiro' => 1, 'Fevereiro' => 2, 'Março' => 3, 'Abril' => 4,
+    			'Maio' => 5, 'Junho' => 6, 'Julho' => 7, 'Agosto' => 8,
+    			'Setembro' => 9, 'Outubro' => 10, 'Novembro' => 11, 'Dezembro' => 12);
+    	$mes = $meses[substr($ma, 0, -4)];
+    	$ano = substr($ma, -4, 4);
+    	Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    	Yii::$app->response->statusCode = 200;
+    	$models = Viagem::find()
+    		->andFilterWhere(['localidade_origem' => $l1, 'localidade_destino' => $l2])
+    		->andFilterWhere(['=','MONTH(data_saida)',$mes])
+    		->asArray()->all();
+    
+    	$totalItems=count($models);
+    	return array('status'=>1,'data'=>$models,'totalItems'=>$totalItems);
+    
     }
 }

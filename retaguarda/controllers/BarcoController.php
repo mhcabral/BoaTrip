@@ -53,7 +53,7 @@ class BarcoController extends Controller {
 												'@' 
 										],
 										'matchCallback' => function ($rule, $action) {
-											return PermissionHelpers::requireMinimumRole ( 'SuperUser' ) && PermissionHelpers::requireStatus ( 'Ativo' );
+											return PermissionHelpers::requireMinimumRole ( 'Admin' ) && PermissionHelpers::requireStatus ( 'Ativo' );
 										} 
 								] 
 						] 
@@ -163,6 +163,20 @@ class BarcoController extends Controller {
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function actionMobileIndex()
+    {
+    	\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    	Yii::$app->response->statusCode = 200;
+    	$models = Barco::find()
+    	->asArray()
+    	->all();
+    
+    	$totalItems=count($models);
+    
+    	return array('status'=>1,'data'=>$models,'totalItems'=>$totalItems);
+    
     }
     
 }

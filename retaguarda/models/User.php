@@ -362,4 +362,6 @@ class User extends ActiveRecord implements IdentityInterface
         return Html::a($this->username, $url, $options); 
     }
     
+    
+    
 }

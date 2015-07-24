@@ -8,10 +8,10 @@ public class Usuario_funcao {
     private String nome;
     private int valor;
 
-    public Usuario_funcao() {
-        this.id = 0;
-        this.nome = null;
-        this.valor = 0;
+    public Usuario_funcao(int id, String nome, int valor) {
+        this.id = id;
+        this.nome = nome;
+        this.valor = valor;
     }
 
     public int getId() {
