@@ -19,8 +19,7 @@ class ViagemSearch extends Viagem
     {
         return [
             [['id', 'barco_id', 'localidade_origem', 'localidade_destino'], 'integer'],
-            [['data_saida', 'data_chegada', 'data_desconto_ini', 'data_desconto_fim', 'percurso'], 'safe'],
-            [['valor', 'valor_desconto'], 'number'],
+            [['data_saida', 'data_chegada', 'percurso'], 'safe'],
         ];
     }
 
@@ -60,16 +59,12 @@ class ViagemSearch extends Viagem
             'id' => $this->id,
             'data_saida' => $this->data_saida,
             'data_chegada' => $this->data_chegada,
-            'valor' => $this->valor,
-            'valor_desconto' => $this->valor_desconto,
-            'data_desconto_ini' => $this->data_desconto_ini,
             'barco_id' => $this->barco_id,
             'localidade_origem' => $this->localidade_origem,
             'localidade_destino' => $this->localidade_destino,
         ]);
 
-        $query->andFilterWhere(['like', 'data_desconto_fim', $this->data_desconto_fim])
-            ->andFilterWhere(['like', 'percurso', $this->percurso]);
+        $query->andFilterWhere(['like', 'percurso', $this->percurso]);
 
         return $dataProvider;
     }

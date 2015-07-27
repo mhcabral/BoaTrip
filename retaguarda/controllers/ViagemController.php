@@ -4,11 +4,13 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Viagem;
+use app\models\PassagemSearch;
 use app\models\ViagemSearch;
 use app\models\PermissionHelpers;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\base\Object;
 
 /**
  * ViagemController implements the CRUD actions for Viagem model.
@@ -121,13 +123,20 @@ class ViagemController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $searchModel = new PassagemSearch();
+        $searchModel->viagem_id = $id; // filtra a passagem para somente a viagem selecionada
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
+        	$teste = 'Teste';
+            return $this->render('update', array(
                 'model' => $model,
-            ]);
+            	'searchModel' => $searchModel,
+            	'dataProvider' => $dataProvider,
+            ));
         }
     }
 
@@ -170,6 +179,7 @@ class ViagemController extends Controller
     	Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     	Yii::$app->response->statusCode = 200;
     	$models = Viagem::find()
+    		->innerJoinWith(['passagems'])
     		->andFilterWhere(['localidade_origem' => $l1, 'localidade_destino' => $l2])
     		->andFilterWhere(['=','MONTH(data_saida)',$mes])
     		->asArray()->all();
@@ -178,4 +188,23 @@ class ViagemController extends Controller
     	return array('status'=>1,'data'=>$models,'totalItems'=>$totalItems);
     
     }
+    
+    public function actionMobilePromocao()
+    {
+    	Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    	Yii::$app->response->statusCode = 200;
+    	$models = Viagem::find()
+    	->innerJoinWith([
+    			'passagems'=> function ($query) {
+    				$query->andWhere('valor_desconto > 0');
+    			},
+    	])
+    	->asArray()->all();
+    
+    	$totalItems=count($models);
+    	return array('status'=>1,'data'=>$models,'totalItems'=>$totalItems);
+    
+    }
+    
+    
 }

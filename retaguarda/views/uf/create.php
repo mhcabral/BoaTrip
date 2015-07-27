@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Uf */
 
-$this->title = 'Create Uf';
+$this->title = 'Criar Uf';
 $this->params['breadcrumbs'][] = ['label' => 'Ufs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

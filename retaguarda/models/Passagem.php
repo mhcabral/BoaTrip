@@ -11,6 +11,10 @@ use Yii;
  * @property string $viagem_id
  * @property integer $quantidade
  * @property integer $passagem_tipo_id
+ * @property string $valor
+ * @property string $valor_desconto
+ * @property string $data_desconto_ini
+ * @property string $data_desconto_fim
  *
  * @property PassagemTipo $passagemTipo
  * @property Viagem $viagem
@@ -32,8 +36,10 @@ class Passagem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['viagem_id', 'quantidade', 'passagem_tipo_id'], 'required'],
-            [['viagem_id', 'quantidade', 'passagem_tipo_id'], 'integer']
+            [['viagem_id', 'quantidade', 'passagem_tipo_id', 'valor'], 'required'],
+            [['viagem_id', 'quantidade', 'passagem_tipo_id'], 'integer'],
+            [['valor', 'valor_desconto'], 'number'],
+            [['data_desconto_ini', 'data_desconto_fim'], 'safe']
         ];
     }
 
@@ -47,6 +53,10 @@ class Passagem extends \yii\db\ActiveRecord
             'viagem_id' => 'Viagem ID',
             'quantidade' => 'Quantidade',
             'passagem_tipo_id' => 'Passagem Tipo ID',
+            'valor' => 'Valor',
+            'valor_desconto' => 'Valor Desconto',
+            'data_desconto_ini' => 'Data Desconto Ini',
+            'data_desconto_fim' => 'Data Desconto Fim',
         ];
     }
 

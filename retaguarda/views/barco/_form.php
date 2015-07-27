@@ -27,7 +27,7 @@ use app\models\UploadForm;
     <?=	$form->field($model, 'empresa_id')->dropDownList($empresaArray, ['prompt' => '---- Selecione uma Empresa ----'])->label('Empresa')?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Criar' : 'Atualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
     <div style="float: left; height: 50px; width: 350px;">
     	<?= $form->field($model, 'imageFile')->fileInput() ?>

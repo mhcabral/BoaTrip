@@ -30,6 +30,8 @@ use app\models\ValueHelpers;
 * @property integer $created_at
 * @property integer $updated_at
 * @property string $password write-only password
+* 
+* @property Profile $profile
 */
  
 class User extends ActiveRecord implements IdentityInterface
@@ -101,7 +103,7 @@ class User extends ActiveRecord implements IdentityInterface
              'profileId' => Yii::t('app', 'Profile'),
              'profileLink' => Yii::t('app', 'Profile'),
              'userLink' => Yii::t('app', 'User'),
-             'username' => Yii::t('app', 'User'),
+             'username' => Yii::t('app', 'Usuário'),
              'userIdLink' => Yii::t('app', 'ID'),
             
             ];
@@ -211,7 +213,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
- 
+ 	
        /**
         * Generates password hash from password and sets it to the model
         *

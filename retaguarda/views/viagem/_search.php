@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'data_chegada') ?>
 
-    <?= $form->field($model, 'valor') ?>
+    <?= //$form->field($model, 'valor') ?>
 
     <?= $form->field($model, 'valor_desconto') ?>
 

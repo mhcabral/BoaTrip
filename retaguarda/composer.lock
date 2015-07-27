@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dd8e10232a0998a2c0d2c33f0dfb73d7",
+    "hash": "c4e9f1ce47a47801fa8f627ba5c28229",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -809,12 +809,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-datecontrol.git",
-                "reference": "3f137da764ea4eb728ca22659f06fd049e88b928"
+                "reference": "ab4ab5dec33db2790ca6d3da6788b2ae339efa3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-datecontrol/zipball/3f137da764ea4eb728ca22659f06fd049e88b928",
-                "reference": "3f137da764ea4eb728ca22659f06fd049e88b928",
+                "url": "https://api.github.com/repos/kartik-v/yii2-datecontrol/zipball/ab4ab5dec33db2790ca6d3da6788b2ae339efa3c",
+                "reference": "ab4ab5dec33db2790ca6d3da6788b2ae339efa3c",
                 "shasum": ""
             },
             "require": {
@@ -848,7 +848,101 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2015-07-16 17:48:08"
+            "time": "2015-07-19 05:01:43"
+        },
+        {
+            "name": "kartik-v/yii2-detail-view",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-detail-view.git",
+                "reference": "c502e12b25da77bb3b36c2ef7510c6d1aae44f39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/c502e12b25da77bb3b36c2ef7510c6d1aae44f39",
+                "reference": "c502e12b25da77bb3b36c2ef7510c6d1aae44f39",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-helpers": "*",
+                "kartik-v/yii2-krajee-base": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\detail\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Various enhancements to the Yii 2 Detail View with ability to edit data and manage Bootstrap 3 styles.",
+            "homepage": "https://github.com/kartik-v/yii2-detail-view",
+            "keywords": [
+                "detail",
+                "detail view",
+                "extension",
+                "form",
+                "grid",
+                "widget",
+                "yii2"
+            ],
+            "time": "2015-07-14 17:56:29"
+        },
+        {
+            "name": "kartik-v/yii2-helpers",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-helpers.git",
+                "reference": "daafedf1ae6130d2287e417941b8c50ad59a50c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-helpers/zipball/daafedf1ae6130d2287e417941b8c50ad59a50c0",
+                "reference": "daafedf1ae6130d2287e417941b8c50ad59a50c0",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\helpers\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A collection of useful helper functions for Yii Framework 2.0",
+            "homepage": "https://github.com/kartik-v/yii2-helpers",
+            "keywords": [
+                "bootstrap",
+                "extension",
+                "helper",
+                "utilities",
+                "yii",
+                "yii2"
+            ],
+            "time": "2015-06-15 17:18:24"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -952,12 +1046,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-datepicker.git",
-                "reference": "bf7018663b7ee03cd8d07e623055c9c07f1eb1bf"
+                "reference": "368b181ef658c05707fe41dd16eee4d9ffd9da38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/bf7018663b7ee03cd8d07e623055c9c07f1eb1bf",
-                "reference": "bf7018663b7ee03cd8d07e623055c9c07f1eb1bf",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/368b181ef658c05707fe41dd16eee4d9ffd9da38",
+                "reference": "368b181ef658c05707fe41dd16eee4d9ffd9da38",
                 "shasum": ""
             },
             "require": {
@@ -993,7 +1087,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-07-10 04:22:25"
+            "time": "2015-07-19 04:49:03"
         },
         {
             "name": "kartik-v/yii2-widget-datetimepicker",
@@ -1325,7 +1419,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kartik-v/yii2-widget-datepicker": 20,
-        "kartik-v/yii2-datecontrol": 20
+        "kartik-v/yii2-datecontrol": 20,
+        "kartik-v/yii2-detail-view": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
     <?=	$form->field($model, 'status_id')->dropDownList($statusArray, ['prompt' => '---- Selecione um Status ----'])->label('Status')?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Criar' : 'Atualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

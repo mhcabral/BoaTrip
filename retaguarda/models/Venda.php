@@ -12,12 +12,12 @@ use Yii;
  * @property string $valor
  * @property string $cartao_numero
  * @property string $validade
- * @property string $passageiro_id
+ * @property string $profile_id
  * @property string $passagem_id
  * @property integer $venda_status_id
  *
- * @property Passageiro $passageiro
  * @property Passagem $passagem
+ * @property Profile $profile
  * @property VendaStatus $vendaStatus
  * @property VendaAvaliacao[] $vendaAvaliacaos
  */
@@ -37,10 +37,10 @@ class Venda extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data', 'valor', 'cartao_numero', 'validade', 'passageiro_id', 'passagem_id', 'venda_status_id'], 'required'],
+            [['data', 'valor', 'cartao_numero', 'validade', 'profile_id', 'passagem_id', 'venda_status_id'], 'required'],
             [['data'], 'safe'],
             [['valor'], 'number'],
-            [['passageiro_id', 'passagem_id', 'venda_status_id'], 'integer'],
+            [['profile_id', 'passagem_id', 'venda_status_id'], 'integer'],
             [['cartao_numero'], 'string', 'max' => 20],
             [['validade'], 'string', 'max' => 5]
         ];
@@ -57,18 +57,10 @@ class Venda extends \yii\db\ActiveRecord
             'valor' => 'Valor',
             'cartao_numero' => 'Cartao Numero',
             'validade' => 'Validade',
-            'passageiro_id' => 'Passageiro ID',
-            'passagem_id' => 'Passagem ID',
-            'venda_status_id' => 'Venda Status ID',
+            'profile_id' => 'Profile',
+            'passagem_id' => 'Passagem',
+            'venda_status_id' => 'Status',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPassageiro()
-    {
-        return $this->hasOne(Passageiro::className(), ['id' => 'passageiro_id']);
     }
 
     /**
@@ -77,6 +69,14 @@ class Venda extends \yii\db\ActiveRecord
     public function getPassagem()
     {
         return $this->hasOne(Passagem::className(), ['id' => 'passagem_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfile()
+    {
+        return $this->hasOne(Profile::className(), ['id' => 'profile_id']);
     }
 
     /**

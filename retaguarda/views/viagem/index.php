@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Viagem', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Viagem', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,8 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'data_saida',
             'data_chegada',
-            'valor',
-            'valor_desconto',
+            //'valor',
+            //'valor_desconto',
             // 'data_desconto_ini',
             // 'data_desconto_fim',
             // 'percurso',

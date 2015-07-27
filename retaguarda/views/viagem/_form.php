@@ -5,15 +5,18 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\datecontrol\DateControl;
 use kartik\money\MaskMoney;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Viagem */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="viagem-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    
     
     <?= $form->field($model, 'data_saida')->widget(DateControl::classname(), [
     	'type'=>DateControl::FORMAT_DATETIME,
@@ -35,37 +38,6 @@ use kartik\money\MaskMoney;
     	]
 	]) ?>
 
-    <?= $form->field($model, 'valor')->widget(MaskMoney::classname(), [
-    	'pluginOptions' => [
-    	]
-	])?>
-    
-
-    <?= $form->field($model, 'valor_desconto')->widget(MaskMoney::classname(), [
-    	'pluginOptions' => [
-    	]
-	])?>
-
-    <?= $form->field($model, 'data_desconto_ini')->widget(DateControl::classname(), [
-    	'type'=>DateControl::FORMAT_DATE,
-   	 	'ajaxConversion'=>false,
-    	'options' => [
-        	'pluginOptions' => [
-            	'autoclose' => true
-       		 ]
-    	]
-	]) ?>
-	
-	<?= $form->field($model, 'data_desconto_fim')->widget(DateControl::classname(), [
-    	'type'=>DateControl::FORMAT_DATE,
-   	 	'ajaxConversion'=>false,
-    	'options' => [
-        	'pluginOptions' => [
-            	'autoclose' => true
-       		 ]
-    	]
-	]) ?>
-
     <?= $form->field($model, 'percurso')->textInput(['maxlength' => true]) ?>
     
     <?php $barcoArray = ArrayHelper::map(\app\models\Barco::find()->orderBy('nome')->all(), 'id', 'nome')?>
@@ -78,9 +50,10 @@ use kartik\money\MaskMoney;
     <?=	$form->field($model, 'localidade_destino')->dropDownList($destinoArray, ['prompt' => '---- Selecione uma Localidade ----'])->label('Destino')?>
     
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Criar' : 'Atualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
+    
+
 
     <?php ActiveForm::end(); ?>
-
 </div>

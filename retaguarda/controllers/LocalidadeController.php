@@ -162,11 +162,6 @@ class LocalidadeController extends Controller {
     {
     	Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     	Yii::$app->response->statusCode = 200;
-    	//return [
-    	//		'message' => 'hello world',
-    	//		'code' => 100,
-    	//];
-    	//$models = $command->queryAll();
     	$models = \app\models\Localidade::find()
     		->with(['uf'])
     		->asArray()

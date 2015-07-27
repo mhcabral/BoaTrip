@@ -10,10 +10,6 @@ use Yii;
  * @property string $id
  * @property string $data_saida
  * @property string $data_chegada
- * @property string $valor
- * @property string $valor_desconto
- * @property string $data_desconto_ini
- * @property string $data_desconto_fim
  * @property string $percurso
  * @property string $barco_id
  * @property string $localidade_origem
@@ -40,11 +36,10 @@ class Viagem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_saida', 'data_chegada', 'valor', 'barco_id', 'localidade_origem', 'localidade_destino'], 'required'],
-            [['data_saida', 'data_chegada', 'data_desconto_ini'], 'safe'],
-            [['valor', 'valor_desconto'], 'number'],
+            [['data_saida', 'data_chegada', 'barco_id', 'localidade_origem', 'localidade_destino'], 'required'],
+            [['data_saida', 'data_chegada'], 'safe'],
             [['barco_id', 'localidade_origem', 'localidade_destino'], 'integer'],
-            [['data_desconto_fim', 'percurso'], 'string', 'max' => 45]
+            [['percurso'], 'string', 'max' => 255]
         ];
     }
 
@@ -57,10 +52,6 @@ class Viagem extends \yii\db\ActiveRecord
             'id' => 'ID',
             'data_saida' => 'Saida',
             'data_chegada' => 'Chegada',
-            'valor' => 'Valor',
-            'valor_desconto' => 'Desconto',
-            'data_desconto_ini' => 'Início Desconto',
-            'data_desconto_fim' => 'Fom Desconto',
             'percurso' => 'Percurso',
             'barco_id' => 'Barco',
             'localidade_origem' => 'Origem',

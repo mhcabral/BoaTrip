@@ -49,6 +49,6 @@ class Genero extends \yii\db\ActiveRecord
      */
     public function getPassageiros()
     {
-        return $this->hasMany(Passageiro::className(), ['genero_id' => 'id']);
+        return $this->hasMany(Profile::className(), ['genero_id' => 'id']);
     }
 }

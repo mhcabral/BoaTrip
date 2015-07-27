@@ -29,7 +29,8 @@
         "kartik-v/yii2-money": "*",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "kartik-v/yii2-widget-datetimepicker": "*",
-        "kartik-v/yii2-datecontrol": "dev-master"
+        "kartik-v/yii2-datecontrol": "dev-master",
+        "kartik-v/yii2-detail-view": "dev-master"
     },
     "config": {
         "process-timeout": 1800
