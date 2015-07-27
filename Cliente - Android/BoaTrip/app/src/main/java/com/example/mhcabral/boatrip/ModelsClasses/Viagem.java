@@ -1,6 +1,8 @@
 package com.example.mhcabral.boatrip.ModelsClasses;
 
 
+import java.util.List;
+
 /**
  * Created by mhcabral on 07/07/15.
  */
@@ -8,19 +10,17 @@ public class Viagem {
     private int id;
     private String data_saida;
     private String data_chegada;
-    private float valor;
-    private float valor_desconto;
     private String percurso;
     private Localidade origem;
     private Localidade destino;
     private Barco barco;
+    private List<Passagem> listPassagem;
 
-    public Viagem(int id, long data_saida, long data_chegada, float valor, float valor_desconto, String percurso, Localidade origem, Localidade destino, Barco barco) {
+    public Viagem(int id, String data_saida, String data_chegada,List<Passagem> listPassagem, String percurso, Localidade origem, Localidade destino, Barco barco) {
         this.id = id;
-        this.data_saida = String.valueOf(data_saida);
-        this.data_chegada = String.valueOf(data_chegada);
-        this.valor = valor;
-        this.valor_desconto = valor_desconto;
+        this.data_saida = data_saida;
+        this.data_chegada = data_chegada;
+        this.listPassagem = listPassagem;
         this.percurso = percurso;
         this.origem = origem;
         this.destino = destino;
@@ -49,22 +49,6 @@ public class Viagem {
 
     public void setData_chegada(String data_chegada) {
         this.data_chegada = data_chegada;
-    }
-
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
-
-    public float getValor_desconto() {
-        return valor_desconto;
-    }
-
-    public void setValor_desconto(float valor_desconto) {
-        this.valor_desconto = valor_desconto;
     }
 
     public String getPercurso() {
@@ -97,5 +81,17 @@ public class Viagem {
 
     public void setBarco(Barco barco) {
         this.barco = barco;
+    }
+
+    public List<Passagem> getListPassagem() {
+        return listPassagem;
+    }
+
+    public void setListPassagem(List<Passagem> listpassagem) {
+        this.listPassagem = listPassagem;
+    }
+
+    public void addListPassagem(Passagem novaPassagem){
+        this.listPassagem.add(novaPassagem);
     }
 }

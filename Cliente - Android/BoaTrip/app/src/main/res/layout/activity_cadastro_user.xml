@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.example.mhcabral.boatrip.Activitys.CadastroUserActivity">
+
+    <include
+        android:id="@+id/tb_cadastro_user"
+        layout="@layout/toolbar_internal"/>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tb_cadastro_user"
+        android:background="@color/gray">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Email"
+            android:id="@+id/textViewEmailCad"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="39dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextEmailCad"
+            android:layout_below="@+id/textViewEmailCad"
+            android:layout_alignLeft="@+id/editTextSenhaCad"
+            android:layout_alignStart="@+id/editTextSenhaCad"
+            android:layout_alignRight="@+id/editTextSenhaCad"
+            android:layout_alignEnd="@+id/editTextSenhaCad" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Senha"
+            android:id="@+id/textViewSenhaCad"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="54dp"
+            android:layout_below="@+id/editTextEmailCad"
+            android:layout_alignRight="@+id/textViewEmailCad"
+            android:layout_alignEnd="@+id/textViewEmailCad" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editTextSenhaCad"
+            android:layout_below="@+id/textViewSenhaCad"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Confirmar Senha"
+            android:id="@+id/textViewSenha2Cad"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="49dp"
+            android:layout_below="@+id/editTextSenhaCad"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editTextSenha2Cad"
+            android:layout_below="@+id/textViewSenha2Cad"
+            android:layout_alignLeft="@+id/editTextSenhaCad"
+            android:layout_alignStart="@+id/editTextSenhaCad" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar"
+            android:id="@+id/buttonCadastro"
+            android:layout_below="@+id/editTextSenha2Cad"
+            android:layout_alignRight="@+id/editTextSenhaCad"
+            android:layout_alignEnd="@+id/editTextSenhaCad"
+            android:layout_marginTop="66dp"
+            android:layout_alignLeft="@+id/editTextSenhaCad"
+            android:layout_alignStart="@+id/editTextSenhaCad"
+            android:onClick="cadastrarUsuario"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

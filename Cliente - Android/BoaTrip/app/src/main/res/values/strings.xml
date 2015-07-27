@@ -11,4 +11,8 @@
     <string name="action_busca">Buscar</string>
     <string name="title_activity_busca_destino">BuscaDestino</string>
     <string name="title_activity_inicial">InicialActivity</string>
+    <string name="title_activity_busca_result">BuscaResultActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_cadastro_user">CadastroUserActivity</string>
+    <string name="title_activity_promocao">PromocaoActivity</string>
 </resources>

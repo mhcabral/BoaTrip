@@ -7,6 +7,6 @@
 
     <include
         android:id="@+id/tb_base_internal"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar_internal"/>
 
 </RelativeLayout>

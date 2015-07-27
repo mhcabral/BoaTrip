@@ -31,16 +31,18 @@ public class CustomJsonObjectRequest extends Request<JSONObject> {
     }
 
     public CustomJsonObjectRequest(String url,Map<String, String> params, Listener<JSONObject> response, ErrorListener listener){
-        super(Method.GET,url,listener);
+        super(Method.POST,url,listener);
         this.params = params;
         this.response = response;
 
     }
 
-    public Map<String, String> getparams() throws AuthFailureError{
+    @Override
+    public Map<String, String> getParams() throws AuthFailureError{
         return params;
     }
 
+    @Override
     public Map<String, String> getHeaders() throws AuthFailureError{
         HashMap<String,String> header = new HashMap<String,String>();
         header.put("apiKey","Essa é a minha API KEY: json object");

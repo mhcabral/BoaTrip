@@ -1,5 +1,6 @@
 package com.example.mhcabral.boatrip.Activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +23,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.mhcabral.boatrip.Controllers.Listfragment;
 import com.example.mhcabral.boatrip.Controllers.Stub2;
 import com.example.mhcabral.boatrip.ModelsClasses.Barco;
+import com.example.mhcabral.boatrip.ModelsClasses.Localidade;
+import com.example.mhcabral.boatrip.ModelsClasses.Passagem;
 import com.example.mhcabral.boatrip.ModelsClasses.Viagem;
 import com.example.mhcabral.boatrip.R;
 import com.mikepenz.materialdrawer.Drawer;
@@ -43,7 +46,7 @@ import java.util.List;
 public class BuscaActivity extends BaseNavegationDrawerActivity {
 
     private Toolbar mToolbar;
-    private Drawer navegationDrawerLeft;
+    private static Drawer navegationDrawerLeft;
     private AccountHeader headerNavegationLeft;
     //private ArrayList<String> opcoes;
     //private ArrayAdapter adapter;
@@ -52,12 +55,14 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
     private static PopupWindow popupWindow;
     //private String result;
 
-    private static RequestQueue rq;
+    private RequestQueue rq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busca);
+
+        rq = Volley.newRequestQueue(BuscaActivity.this);
 
         //CUSTOM TOOLBAR
         mToolbar = (Toolbar) findViewById(R.id.tb_busca);
@@ -94,12 +99,15 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
                         //Toast.makeText(BuscaActivity.this, "Caso "+i, Toast.LENGTH_SHORT).show();
+                        Intent it;
                         switch (i) {
                             case 0:
-                                break;
-                            case 1:
+                                it = new Intent(BuscaActivity.this, LoginActivity.class);
+                                startActivity(it);
                                 break;
                             case 2:
+                                it = new Intent(BuscaActivity.this, PromocaoActivity.class);
+                                startActivity(it);
                                 break;
                             case 3:
                                 Toast.makeText(BuscaActivity.this,"Você está na Busca",Toast.LENGTH_SHORT).show();
@@ -107,14 +115,6 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
                             case 4:
                                 break;
                         }
-                        return false;
-                    }
-                })
-                .withOnDrawerItemLongClickListener(new Drawer.OnDrawerItemLongClickListener() {
-
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        Toast.makeText(BuscaActivity.this, "onItemLongClick", Toast.LENGTH_SHORT).show();
                         return false;
                     }
                 })
@@ -182,9 +182,11 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
             ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
             ft.commit();
         }
-        Listfragment.setLastposition(-1);
+        frag.setLastposition(-1);
 
-        rq = Volley.newRequestQueue(BuscaActivity.this);
+        frag.setRq(Volley.newRequestQueue(BuscaActivity.this));
+
+        callByJsonObjectRequestPromocao(Stub2.getPrefix_url() + "/index.php?r=viagem/mobile-promocao");
     }
 
 
@@ -283,7 +285,15 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
         BuscaActivity.popupWindow = popupWindow;
     }
 
-    public static void callByJsonObjectRequestViagem(String url) {
+    public static Drawer getNavegationDrawerLeft() {
+        return navegationDrawerLeft;
+    }
+
+    public static void setNavegationDrawerLeft(Drawer navegationDrawerLeft) {
+        BuscaActivity.navegationDrawerLeft = navegationDrawerLeft;
+    }
+
+    public void callByJsonObjectRequestPromocao(String url) {
 
         JsonObjectRequest request = new JsonObjectRequest
                 (Request.Method.GET, url, new Response.Listener<JSONObject>() {
@@ -291,33 +301,81 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         JSONArray dataArray = null;
-                        Log.i("ScriptViagem", "Response: " + response);
+                        Log.i("ScriptPromocao", "Response: " + response);
+                        int totalItens = -1;
                         try {
-                            Log.i("ScriptViagem","Total Items: "+ response.get("totalItems").toString());
+                            totalItens = response.getInt("totalItems");
+                            Log.i("ScriptPromocao","Total Items: "+ totalItens);
                             //Log.i("Script","Data :" + response.getJSONArray("data"));
                             dataArray = response.getJSONArray("data");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        int i,j, idBarco;
+                        int i,j,k,l, idBarco,idViagem,idPassagem, idOrigem, idDestino;
+                        float valor,valor_desconto;
                         Barco barcoBuscado = null;
-                        try {
-                            for(i=0;i<Integer.parseInt(response.get("totalItems").toString());i++){
-                                Log.i("ScriptViagem","Data "+i+": "+dataArray.getJSONObject(i));
-                                JSONObject subobject = dataArray.getJSONObject(i);
-                                for(j=0;j<Stub2.getListbarcos().size();j++){
-                                    idBarco = Integer.parseInt(subobject.getString("barco_id"));
-                                    if(idBarco == Stub2.getListbarcos().get(i).getId()){
-                                       barcoBuscado  = Stub2.getListbarcos().get(i);
+                        Localidade origem = null,destino = null;
+                        List<Passagem> novaListPassagem = new ArrayList<Passagem>();
+                        List<Viagem> novaListPromocao = new ArrayList<Viagem>();
+                        String tpassagem = null;
+                        if(totalItens>0) {
+                            try {
+                                for (i = 0; i < response.getInt("totalItems"); i++) {
+                                    Log.i("ScriptPromocao", "Data " + i + ": " + dataArray.getJSONObject(i));
+                                    JSONObject subobject = dataArray.getJSONObject(i);
+                                    JSONArray subdataArray = subobject.getJSONArray("passagems");
+                                    Log.i("ScriptPromocao", "Tamanho lista barcos: "+Stub2.getListbarcos().size());
+                                    for (j = 0; j < Stub2.getListbarcos().size(); j++) {
+                                        idBarco = subobject.getInt("barco_id");
+                                        //Log.i("ScriptPromocao", "Barco id: "+idBarco);
+                                        if (idBarco == Stub2.getListbarcos().get(j).getId()) {
+                                            barcoBuscado = Stub2.getListbarcos().get(j);
+                                        }
                                     }
+                                    Log.i("ScriptPromocao", "Barco " + i + ": " + barcoBuscado.getNome());
+                                    for(k=0;k < subdataArray.length();k++){
+                                        JSONObject subobjectPassagem = subdataArray.getJSONObject(k);
+                                        Log.i("ScriptPromocao", "SubdataArray "+i+" Passagem "+k+": "+subdataArray.getJSONObject(k));
+                                        //Log.i("ScriptPromocao", "SubobjectPassagem id: "+subobjectPassagem.getInt("id"));
+                                        idPassagem = subobjectPassagem.getInt("id");
+                                        if (idPassagem == Stub2.getListpassagemtipo().get(k).getId()) {
+                                            tpassagem = Stub2.getListpassagemtipo().get(k).getNome();
+                                        }
+                                        Log.i("ScriptPromocao", "Tipo de Passagem: "+tpassagem);
+                                        valor = Float.valueOf(subobjectPassagem.getString("valor"));
+                                        Log.i("ScriptPromocao","Passagem valor:"+valor);
+                                        valor_desconto = Float.valueOf(subobjectPassagem.getString("valor_desconto"));
+                                        Log.i("ScriptPromocao", "Passagem desconto:" + valor_desconto);
+                                        Passagem novaPassagem = new Passagem(idPassagem,tpassagem,subobjectPassagem.getInt("quantidade"),valor,valor_desconto);
+                                        novaListPassagem.add(novaPassagem);
+                                        Log.i("ScriptPromocao","Passagem id:"+novaPassagem.getId());
+                                    }
+                                    for(l=0; l < Stub2.getListlocalidade().size(); l++){
+                                        idOrigem = subobject.getInt("localidade_origem");
+                                        idDestino = subobject.getInt("localidade_destino");
+                                        if(idOrigem == Stub2.getListlocalidade().get(l).getId()){
+                                            origem = Stub2.getListlocalidade().get(l);
+                                        }
+                                        if(idDestino == Stub2.getListlocalidade().get(l).getId()){
+                                            destino = Stub2.getListlocalidade().get(l);
+                                        }
+                                    }
+                                    idViagem = subobject.getInt("id");
+                                    Log.i("ScriptPromocao","Viagem id:"+idViagem);
+                                    Viagem novaViagem = new Viagem(idViagem, subobject.getString("data_saida"), subobject.getString("data_chegada"),novaListPassagem, subobject.getString("percurso"), origem, destino, barcoBuscado);
+                                    novaListPromocao.add(novaViagem);
                                 }
-                                Log.i("ScriptViagem","Barco "+i+": "+barcoBuscado.getNome());
-                                Viagem novaViagem = new Viagem(Integer.parseInt(subobject.getString("id")),Date.parse(subobject.getString("data_saida")),Date.parse(subobject.getString("data_chegada")),Float.valueOf(subobject.getString("valor")),Float.valueOf(subobject.getString("valor_desconto")),subobject.getString("percurso"),Stub2.getOrigemBuscado(),Stub2.getDestinoBuscado(),barcoBuscado);
-                                Stub2.addListviagens(novaViagem);
+                                Stub2.setListpromocoes(novaListPromocao);
+                                if(Stub2.getListpromocoes().size() == response.getInt("totalItems")) {
+                                    Log.i("ScriptPromocao", "Peguei todas as promocoes");
 
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        }
+                        else{
+                            Toast.makeText(BuscaActivity.this,"Nenhuma promoção encontrada", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -325,14 +383,13 @@ public class BuscaActivity extends BaseNavegationDrawerActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.i("ScriptViagem", "Error: " + error.getMessage());
-                        Stub2.setErroBusca(error.getMessage());
-                        //Toast.makeText(BuscaActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.i("ScriptPromocao", "Error: " + error.getMessage());
+                        Toast.makeText(BuscaActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                         //Toast.makeText(BuscaActivity.this, "Servidor indisponivel", Toast.LENGTH_SHORT).show();
                     }
                 });
 
-        request.getBody();
+        request.setTag("tag");
         rq.add(request);
     }
 }
