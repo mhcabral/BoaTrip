@@ -60,6 +60,13 @@ public class BuscaDestinoActivity extends BaseInternalActivity {
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setQueryHint("Para onde vou");
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                listview.setAdapter(null);
+                return false;
+            }
+        });
 
         SearchView.OnQueryTextListener textChangeListener = new SearchView.OnQueryTextListener() {
 

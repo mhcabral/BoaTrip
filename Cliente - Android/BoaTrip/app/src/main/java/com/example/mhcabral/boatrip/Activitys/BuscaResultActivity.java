@@ -1,5 +1,6 @@
 package com.example.mhcabral.boatrip.Activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -46,6 +47,19 @@ public class BuscaResultActivity extends BaseInternalActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 Log.i("Script", "Position: " + position);
+                Intent it;
+                if(Stub2.getUser().getId() == -1){
+                    if(Stub2.getUser().getUserProfile().getId() == -1){
+
+                    }
+                    else{
+
+                    }
+                }
+                else{
+                    it = new Intent(BuscaResultActivity.this,LoginActivity.class);
+                    startActivity(it);
+                }
 
             }
 
@@ -53,13 +67,21 @@ public class BuscaResultActivity extends BaseInternalActivity {
     }
 
     public List<String> getSetProfileList(){
-        int i;
+        int i,j;
+        float valorTotal;
+        String item = null;
         List<String> listAux = new ArrayList<String>();
-        for(i=0;i<Stub2.getListviagens().size();i++){
-            String item = "Origem: "+Stub2.getListviagens().get(i).getOrigem().getNome()+"\nData da saida: "+Stub2.getListviagens().get(i).getData_saida()+"\n"+
-                    "Destino: "+Stub2.getListviagens().get(i).getDestino().getNome()+"\nData da chegada: "+Stub2.getListviagens().get(i).getData_chegada()+"\n"+
-                    "Valor: "+Stub2.getListviagens().get(i).getValor()+"\n"+"Barco: "+Stub2.getListviagens().get(i).getBarco().getNome();
-            listAux.add(item);
+        for(i=0;i< Stub2.getListviagens().size();i++){
+            for(j=0;j< Stub2.getListviagens().get(i).getListPassagem().size();j++) {
+                valorTotal = Stub2.getListviagens().get(i).getListPassagem().get(j).getValor() - Stub2.getListviagens().get(i).getListPassagem().get(j).getValor_desconto();
+                Log.i("ScriptSystem","Tipo de Passagem: "+Stub2.getListviagens().get(i).getListPassagem().get(j).getTpassagem());
+                Log.i("ScriptSystem","Valor total a pagar: "+valorTotal);
+                item = "Origem: "+Stub2.getListviagens().get(i).getOrigem().getNome()+"\nData da saida: "+Stub2.getListviagens().get(i).getData_saida()+"\n"+
+                        "Destino: "+Stub2.getListviagens().get(i).getDestino().getNome()+"\nData da chegada: "+Stub2.getListviagens().get(i).getData_chegada()+"\n"+
+                        "Tipo de Passagem: "+Stub2.getListviagens().get(i).getListPassagem().get(j).getTpassagem()+"\n"+"Valor: "+String.valueOf(valorTotal)+"\n"+"Barco: "+Stub2.getListviagens().get(i).getBarco().getNome();
+
+                listAux.add(item);
+            }
         }
         return(listAux);
     }

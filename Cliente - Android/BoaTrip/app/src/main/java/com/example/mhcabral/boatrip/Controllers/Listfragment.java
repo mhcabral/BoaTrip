@@ -6,6 +6,7 @@ package com.example.mhcabral.boatrip.Controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +29,8 @@ import com.example.mhcabral.boatrip.Activitys.BuscaDestinoActivity;
 import com.example.mhcabral.boatrip.Activitys.BuscaOrigemActivity;
 import com.example.mhcabral.boatrip.Activitys.BuscaResultActivity;
 import com.example.mhcabral.boatrip.ModelsClasses.Barco;
+import com.example.mhcabral.boatrip.ModelsClasses.Localidade;
+import com.example.mhcabral.boatrip.ModelsClasses.Passagem;
 import com.example.mhcabral.boatrip.ModelsClasses.Viagem;
 import com.example.mhcabral.boatrip.R;
 
@@ -35,6 +38,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -90,7 +94,6 @@ public class Listfragment extends Fragment implements RecyclerViewOnClickListene
         adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
 
-
         return view;
     }
 
@@ -98,7 +101,6 @@ public class Listfragment extends Fragment implements RecyclerViewOnClickListene
     public void onClickListener(View view, int position) {
         //Toast.makeText(getActivity(), "Position: "+position, Toast.LENGTH_SHORT).show();
         Log.i("Script", "Position: " + position);
-        ListAdapter adapter = (ListAdapter) mRecyclerView.getAdapter();
         //Toast.makeText(BuscaActivity.this, "Caso "+position, Toast.LENGTH_SHORT).show();
         Intent it;
         switch (position) {
@@ -154,8 +156,14 @@ public class Listfragment extends Fragment implements RecyclerViewOnClickListene
                 }
                 break;
         }
-        //adapter.notifyDataSetChanged();
+
+        //mRecyclerView.getAdapter().notifyDataSetChanged();
         //adapter.removeListItem(position);
+    }
+
+    @UiThread
+    protected void dataSetChanged() {
+        mRecyclerView.getAdapter().notifyDataSetChanged();
     }
 
     public static int getLastposition() {
@@ -184,28 +192,61 @@ public class Listfragment extends Fragment implements RecyclerViewOnClickListene
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        int i,j, idBarco,idViagem;
-                        //long DataSaida, DataChegada;
-                        float valor,desconto;
+                        int i,j,k,l, idBarco,idViagem,idPassagem, idOrigem, idDestino;
+                        float valor,valor_desconto;
                         Barco barcoBuscado = null;
+                        Localidade origem = null,destino = null;
+                        List<Passagem> novaListPassagem = new ArrayList<Passagem>();
+                        List<Viagem> novaListViagem = new ArrayList<Viagem>();
+                        String tpassagem = null;
                         if(totalItens>0) {
                             try {
-                                for (i = 0; i < Integer.parseInt(response.get("totalItems").toString()); i++) {
+                                for (i = 0; i < response.getInt("totalItems"); i++) {
                                     Log.i("ScriptViagem", "Data " + i + ": " + dataArray.getJSONObject(i));
                                     JSONObject subobject = dataArray.getJSONObject(i);
+                                    JSONArray subdataArray = subobject.getJSONArray("passagems");
+                                    Log.i("ScriptViagem", "Tamanho lista barcos: "+Stub2.getListbarcos().size());
                                     for (j = 0; j < Stub2.getListbarcos().size(); j++) {
-                                        idBarco = Integer.parseInt(subobject.getString("barco_id"));
-                                        if (idBarco == Stub2.getListbarcos().get(i).getId()) {
-                                            barcoBuscado = Stub2.getListbarcos().get(i);
+                                        idBarco = subobject.getInt("barco_id");
+                                        //Log.i("ScriptViagem", "Barco id: "+idBarco);
+                                        if (idBarco == Stub2.getListbarcos().get(j).getId()) {
+                                            barcoBuscado = Stub2.getListbarcos().get(j);
                                         }
                                     }
                                     Log.i("ScriptViagem", "Barco " + i + ": " + barcoBuscado.getNome());
-                                    idViagem = Integer.parseInt(subobject.getString("id"));
-                                    valor = Float.valueOf(subobject.getString("valor"));
-                                    desconto = Float.valueOf(subobject.getString("valor_desconto"));
-                                    Viagem novaViagem = new Viagem(idViagem, subobject.getString("data_saida"), subobject.getString("data_chegada"), valor, desconto, subobject.getString("percurso"), Stub2.getOrigemBuscado(), Stub2.getDestinoBuscado(), barcoBuscado);
-                                    Stub2.addListviagens(novaViagem);
+                                    for(k=0;k < subdataArray.length();k++){
+                                        JSONObject subobjectPassagem = subdataArray.getJSONObject(k);
+                                        Log.i("ScriptViagem", "SubdataArray: "+subdataArray.getJSONObject(k));
+                                        idPassagem = subobjectPassagem.getInt("id");
+                                        //Log.i("ScriptViagem", "SubobjectPassagem id: "+subobjectPassagem.getInt("id"));
+                                        if (idPassagem == Stub2.getListpassagemtipo().get(k).getId()) {
+                                            tpassagem = Stub2.getListpassagemtipo().get(k).getNome();
+                                        }
+                                        Log.i("ScriptViagem", "Tipo de Passagem: "+tpassagem);
+                                        valor = Float.valueOf(subobjectPassagem.getString("valor"));
+                                        Log.i("ScriptViagem","Passagem valor:"+valor);
+                                        valor_desconto = Float.valueOf(subobjectPassagem.getString("valor_desconto"));
+                                        Log.i("ScriptViagem", "Passagem desconto:" + valor_desconto);
+                                        Passagem novaPassagem = new Passagem(idPassagem,tpassagem,subobjectPassagem.getInt("quantidade"),valor,valor_desconto);
+                                        novaListPassagem.add(novaPassagem);
+                                        Log.i("ScriptViagem","Passagem id:"+novaPassagem.getId());
+                                    }
+                                    for(l=0; l < Stub2.getListlocalidade().size(); l++){
+                                        idOrigem = subobject.getInt("localidade_origem");
+                                        idDestino = subobject.getInt("localidade_destino");
+                                        if(idOrigem == Stub2.getListlocalidade().get(l).getId()){
+                                            origem = Stub2.getListlocalidade().get(l);
+                                        }
+                                        if(idDestino == Stub2.getListlocalidade().get(l).getId()){
+                                            destino = Stub2.getListlocalidade().get(l);
+                                        }
+                                    }
+                                    idViagem = subobject.getInt("id");
+                                    Log.i("ScriptViagem","Viagem id:"+idViagem);
+                                    Viagem novaViagem = new Viagem(idViagem, subobject.getString("data_saida"), subobject.getString("data_chegada"),novaListPassagem, subobject.getString("percurso"), origem, destino, barcoBuscado);
+                                    novaListViagem.add(novaViagem);
                                 }
+                                Stub2.setListviagens(novaListViagem);
                                 Intent it = new Intent(getActivity(), BuscaResultActivity.class);
                                 startActivity(it);
                             } catch (JSONException e) {

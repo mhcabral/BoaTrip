@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context="com.example.mhcabral.boatrip.CadastroUserActivity">
+    tools:context="com.example.mhcabral.boatrip.Activitys.CadastroUserActivity">
 
     <include
         android:id="@+id/tb_cadastro_user"
@@ -93,7 +93,7 @@
             android:layout_marginTop="66dp"
             android:layout_alignLeft="@+id/editTextSenhaCad"
             android:layout_alignStart="@+id/editTextSenhaCad"
-            android:onClick="CadastrarUsuario"/>
+            android:onClick="cadastrarUsuario"/>
 
     </RelativeLayout>
 

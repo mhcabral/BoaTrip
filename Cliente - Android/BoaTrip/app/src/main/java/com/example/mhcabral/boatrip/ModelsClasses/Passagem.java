@@ -5,17 +5,17 @@ package com.example.mhcabral.boatrip.ModelsClasses;
  */
 public class Passagem {
     private int id;
-    private Viagem viagem;
-    private TipoDePassagem tpassagem;
+    private String tpassagem;
     private int quantidade;
-    private int restante;
+    private float valor;
+    private float valor_desconto;
 
-    public Passagem(int id, Viagem viagem, TipoDePassagem tpassagem, int quantidade, int restante) {
+    public Passagem(int id, String tpassagem, int quantidade,float valor,float valor_desconto) {
         this.id = id;
-        this.viagem = viagem;
         this.tpassagem = tpassagem;
         this.quantidade = quantidade;
-        this.restante = restante;
+        this.valor = valor;
+        this.valor_desconto = valor_desconto;
     }
 
     public int getId() {
@@ -26,19 +26,11 @@ public class Passagem {
         this.id = id;
     }
 
-    public Viagem getViagem() {
-        return viagem;
-    }
-
-    public void setViagem(Viagem viagem) {
-        this.viagem = viagem;
-    }
-
-    public TipoDePassagem getTpassagem() {
+    public String getTpassagem() {
         return tpassagem;
     }
 
-    public void setTpassagem(TipoDePassagem tpassagem) {
+    public void setTpassagem(String tpassagem) {
         this.tpassagem = tpassagem;
     }
 
@@ -50,11 +42,19 @@ public class Passagem {
         this.quantidade = quantidade;
     }
 
-    public int getRestante() {
-        return restante;
+    public float getValor() {
+        return valor;
     }
 
-    public void setRestante(int restante) {
-        this.restante = restante;
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    public float getValor_desconto() {
+        return valor_desconto;
+    }
+
+    public void setValor_desconto(float valor_desconto) {
+        this.valor_desconto = valor_desconto;
     }
 }

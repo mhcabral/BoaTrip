@@ -1,19 +1,23 @@
 package com.example.mhcabral.boatrip.Activitys;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.mhcabral.boatrip.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BaseInternalActivity extends ActionBarActivity {
     private Toolbar mToolbar;
+
+    private ListView listview;
+    private ArrayAdapter adapter;
+    List<String> resultados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,35 +33,9 @@ public class BaseInternalActivity extends ActionBarActivity {
         mToolbar.setSubtitleTextColor(getResources().getColor(android.R.color.white));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_base_internal, menu);
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-        SearchView.OnQueryTextListener textChangeListener = new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                //Log.i("Filter", "on query submit: " + query);
-                Toast.makeText(BaseInternalActivity.this,query,Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                //Log.i("Filter","on change text: "+newText);
-                return true;
-            }
-        };
-
-        searchView.setOnQueryTextListener(textChangeListener);
-        return super.onCreateOptionsMenu(menu);
+        listview = (ListView) findViewById(R.id.listView_busca_origem);
+        resultados = new ArrayList<String>();
     }
 
     @Override

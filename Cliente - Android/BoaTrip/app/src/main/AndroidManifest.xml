@@ -48,8 +48,12 @@
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name=".CadastroUserActivity"
+            android:name=".Activitys.CadastroUserActivity"
             android:label="@string/title_activity_cadastro_user" >
+        </activity>
+        <activity
+            android:name=".Activitys.PromocaoActivity"
+            android:label="@string/title_activity_promocao" >
         </activity>
     </application>
 

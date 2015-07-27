@@ -52,7 +52,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         mRecyclerViewOnClickListenerHack = r;
     }
 
-
     public void addListItem(String c, int position){
         mList.add(c);
         notifyItemInserted(position);

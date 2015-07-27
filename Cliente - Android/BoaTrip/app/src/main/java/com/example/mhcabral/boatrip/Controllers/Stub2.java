@@ -3,7 +3,9 @@ package com.example.mhcabral.boatrip.Controllers;
 import android.content.Context;
 
 import com.example.mhcabral.boatrip.ModelsClasses.Barco;
+import com.example.mhcabral.boatrip.ModelsClasses.Genero;
 import com.example.mhcabral.boatrip.ModelsClasses.Localidade;
+import com.example.mhcabral.boatrip.ModelsClasses.PassagemTipo;
 import com.example.mhcabral.boatrip.ModelsClasses.Usuario;
 import com.example.mhcabral.boatrip.ModelsClasses.Venda;
 import com.example.mhcabral.boatrip.ModelsClasses.Viagem;
@@ -16,20 +18,24 @@ import java.util.List;
  */
 public class Stub2 {
     private static Stub2 instance;
-    private static List<Localidade> listlocalidade;
     private static Usuario user;
-    private static List<Venda> listvendas;
     private static String dbusca_origem;
-    private static int idbusca_origem;
     private static String dbusca_destino;
-    private static int idbusca_destino;
     private static String mesAno;
-    private static boolean erroBusca;
+    private static int idbusca_origem;
+    private static int idbusca_destino;
+    private static List<Localidade> listlocalidade;
     private static List<Viagem> listviagens;
     private static List<Barco> listbarcos;
+    private static List<Venda> listvendas;
+    private static List<Viagem> listpromocoes;
+    private static List<PassagemTipo> listpassagemtipo;
+    private static List<Genero> listgenero;
     private static Localidade origemBuscado;
     private static Localidade destinoBuscado;
     private static String prefix_url;
+    private static boolean profile_ok;
+    private static boolean loadedBarcos;
 
     public static void initInstance(Context current) {
         if (instance == null) {
@@ -42,11 +48,15 @@ public class Stub2 {
             dbusca_destino = null;
             idbusca_origem = 0;
             idbusca_destino = 0;
-            erroBusca = false;
             mesAno = null;
             listviagens = new ArrayList<Viagem>();
             listbarcos = new ArrayList<Barco>();
             prefix_url = "http://boatrip.microben.com.br";
+            profile_ok = false;
+            listpromocoes = new ArrayList<Viagem>();
+            listpassagemtipo = new ArrayList<PassagemTipo>();
+            listgenero = new ArrayList<Genero>();
+            loadedBarcos = false;
         }
     }
 
@@ -166,19 +176,55 @@ public class Stub2 {
         Stub2.destinoBuscado = destinoBuscado;
     }
 
-    public static boolean getErroBusca() {
-        return erroBusca;
-    }
-
-    public static void setErroBusca(boolean erroBusca) {
-        Stub2.erroBusca = erroBusca;
-    }
-
     public static String getPrefix_url() {
         return prefix_url;
     }
 
     public static void setPrefix_url(String prefix_url) {
         Stub2.prefix_url = prefix_url;
+    }
+
+    public static boolean isProfile_ok() {
+        return profile_ok;
+    }
+
+    public static void setProfile_ok(boolean profile_ok) {
+        Stub2.profile_ok = profile_ok;
+    }
+
+    public static List<Viagem> getListpromocoes() {
+        return listpromocoes;
+    }
+
+    public static void setListpromocoes(List<Viagem> listpromocoes) {
+        Stub2.listpromocoes = listpromocoes;
+    }
+
+    public static void addListpromocoes(Viagem novaPromocao){
+        Stub2.listpromocoes.add(novaPromocao);
+    }
+
+    public static List<PassagemTipo> getListpassagemtipo() {
+        return listpassagemtipo;
+    }
+
+    public static void setListpassagemtipo(List<PassagemTipo> listpassagemtipo) {
+        Stub2.listpassagemtipo = listpassagemtipo;
+    }
+
+    public static List<Genero> getListgenero() {
+        return listgenero;
+    }
+
+    public static void setListgenero(List<Genero> listgenero) {
+        Stub2.listgenero = listgenero;
+    }
+
+    public static boolean isLoadedBarcos() {
+        return loadedBarcos;
+    }
+
+    public static void setLoadedBarcos(boolean loadedBarcos) {
+        Stub2.loadedBarcos = loadedBarcos;
     }
 }
