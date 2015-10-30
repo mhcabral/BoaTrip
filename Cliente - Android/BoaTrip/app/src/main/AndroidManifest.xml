@@ -55,6 +55,14 @@
             android:name=".Activitys.PromocaoActivity"
             android:label="@string/title_activity_promocao" >
         </activity>
+        <activity
+            android:name=".Activitys.CadastroPerfilActivity"
+            android:label="@string/title_activity_cadastro_perfil" >
+        </activity>
+        <activity
+            android:name=".Activitys.LoginInternalActivity"
+            android:label="@string/title_activity_login_internal" >
+        </activity>
     </application>
 
 </manifest>

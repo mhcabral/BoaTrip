@@ -64,4 +64,14 @@ public class Barco {
     public void addFotos(Barco_foto foto){
         this.fotos.add(foto);
     }
+
+    @Override
+    public String toString() {
+        return "Barco{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", numero_tripulantes=" + numero_tripulantes +
+                '}';
+    }
 }

@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/tb_promocao"
-        layout="@layout/toolbar_internal"/>
+        layout="@layout/toolbar"/>
 
     <ListView
         android:layout_width="match_parent"

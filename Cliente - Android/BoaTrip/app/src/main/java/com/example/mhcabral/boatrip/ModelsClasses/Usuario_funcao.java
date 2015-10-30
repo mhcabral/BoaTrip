@@ -37,4 +37,13 @@ public class Usuario_funcao {
     public void setValor(int valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario_funcao{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", valor=" + valor +
+                '}';
+    }
 }

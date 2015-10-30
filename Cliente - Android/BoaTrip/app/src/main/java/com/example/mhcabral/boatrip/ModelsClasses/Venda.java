@@ -99,4 +99,19 @@ public class Venda {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    @Override
+    public String toString() {
+        return "Venda{" +
+                "id=" + id +
+                ", data=" + data +
+                ", valor=" + valor +
+                ", cartao_numero='" + cartao_numero + '\'' +
+                ", validade_cartao='" + validade_cartao + '\'' +
+                ", viagem=" + viagem +
+                ", avaliacao=" + avaliacao +
+                ", estado_venda=" + estado_venda.toString() +
+                ", usuario=" + usuario +
+                '}';
+    }
 }

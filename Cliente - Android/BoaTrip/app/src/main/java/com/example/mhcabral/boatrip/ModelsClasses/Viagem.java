@@ -94,4 +94,17 @@ public class Viagem {
     public void addListPassagem(Passagem novaPassagem){
         this.listPassagem.add(novaPassagem);
     }
+
+    @Override
+    public String toString() {
+        return "Viagem{" +
+                "id=" + id +
+                ", data_saida='" + data_saida + '\'' +
+                ", data_chegada='" + data_chegada + '\'' +
+                ", percurso='" + percurso + '\'' +
+                ", origem=" + origem.toString() +
+                ", destino=" + destino.toString() +
+                ", barco=" + barco.toString() +
+                '}';
+    }
 }

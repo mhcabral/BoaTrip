@@ -21,14 +21,13 @@ import com.example.mhcabral.boatrip.Controllers.Stub2;
 import com.example.mhcabral.boatrip.ModelsClasses.Profile;
 import com.example.mhcabral.boatrip.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends BaseInternalActivity {
+public class LoginInternalActivity extends BaseInternalActivity {
 
     private Toolbar mToolbar;
     private RequestQueue rq;
@@ -39,10 +38,10 @@ public class LoginActivity extends BaseInternalActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_internal);
 
         //CUSTOM TOOLBAR
-        mToolbar = (Toolbar) findViewById(R.id.tb_login);
+        mToolbar = (Toolbar) findViewById(R.id.tb_login_internal);
         mToolbar.setLogo(R.mipmap.ic_boatrip_logo);
         mToolbar.setTitle("BoaTrip");
         mToolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
@@ -50,16 +49,16 @@ public class LoginActivity extends BaseInternalActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        rq = Volley.newRequestQueue(LoginActivity.this);
-        email = (EditText) findViewById(R.id.editTextEmail);
-        senha = (EditText) findViewById(R.id.editTextSenha);
+        rq = Volley.newRequestQueue(LoginInternalActivity.this);
+        email = (EditText) findViewById(R.id.editTextEmail_li);
+        senha = (EditText) findViewById(R.id.editTextSenha_li);
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
+        getMenuInflater().inflate(R.menu.menu_login_internal, menu);
         return true;
     }
 
@@ -71,7 +70,7 @@ public class LoginActivity extends BaseInternalActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.cadastro) {
+        if (id == R.id.cadastro_li) {
             Intent it = new Intent(this, CadastroUserActivity.class);
             startActivity(it);
         }
@@ -81,7 +80,6 @@ public class LoginActivity extends BaseInternalActivity {
 
     public void verificarLogin(View view){
         callByJsonObjectRequestLogin(Stub2.getPrefix_url() + "/index.php?r=user/mobile-login");
-        //callByJsonObjectRequestLogin2(Stub2.getPrefix_url()+"/index.php?r=user/mobile-login");
     }
 
     public void callByJsonObjectRequestLogin(String url){
@@ -99,29 +97,25 @@ public class LoginActivity extends BaseInternalActivity {
                         int status = -1;
                         Intent it;
                         Log.i("ScriptLogin", "Sucess: " + response);
-                        JSONArray dataArray = null;
                         JSONObject subobject = null;
                         JSONObject subobjectProfile = null;
                         try {
                             status = response.getInt("status");
-                            dataArray = response.getJSONArray("data");
-                            Log.i("ScriptLogin", "Data: " + dataArray);
-                            subobject = dataArray.getJSONObject(0);
+                            subobject = response.getJSONObject("data");
                             subobjectProfile = subobject.getJSONObject("profile");
-                            Log.i("ScriptLogin", "Profile: " + subobjectProfile);
+                            Log.i("ScriptLogin", "Data: " + subobject);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         if(status == 0){
-                            Toast.makeText(LoginActivity.this, "Usuario não encontrado", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginInternalActivity.this, "Usuario não encontrado", Toast.LENGTH_SHORT).show();
                         }
                         else if(status == 1){
                             Stub2.getUser().setEmail(email.getText().toString());
                             Stub2.getUser().setPassword_hash(senha.getText().toString());
                             try {
                                 String genero;
-                                int genero_id = subobjectProfile.getInt("genero_id");
-                                if(genero_id == 1){
+                                if(subobjectProfile.getInt("genero_id") == 1){
                                     genero = "Masculino";
                                 }
                                 else{
@@ -134,15 +128,17 @@ public class LoginActivity extends BaseInternalActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            Log.i("ScriptLogin",Stub2.getUser().getUserProfile().toString());
-                            it = new Intent(LoginActivity.this,BuscaActivity.class);
-                            startActivity(it);
-                            finish();
+                            Log.i("ScriptLogin", Stub2.getUser().getUserProfile().toString());
+                            //it = new Intent(LoginActivity.this,BuscaActivity.class);
+                            //startActivity(it);
+                            //finish();
                         }
                         else if(status == 2){
                             Stub2.getUser().setEmail(email.getText().toString());
                             Stub2.getUser().setPassword_hash(senha.getText().toString());
-                            it = new Intent(LoginActivity.this,BuscaActivity.class);
+                            Profile novoProfile = new Profile(-1);
+                            Stub2.getUser().setUserProfile(novoProfile);
+                            it = new Intent(LoginInternalActivity.this,CadastroPerfilActivity.class);
                             startActivity(it);
                             finish();
                         }
@@ -151,7 +147,7 @@ public class LoginActivity extends BaseInternalActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginInternalActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 

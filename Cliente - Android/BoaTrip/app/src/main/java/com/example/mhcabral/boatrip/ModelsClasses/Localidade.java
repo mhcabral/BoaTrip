@@ -54,4 +54,14 @@ public class Localidade {
     public void setLocalidade_url(String localidade_url) {
         this.localidade_url = localidade_url;
     }
+
+    @Override
+    public String toString() {
+        return "Localidade{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", uf=" + uf.toString() +
+                ", localidade_url='" + localidade_url + '\'' +
+                '}';
+    }
 }

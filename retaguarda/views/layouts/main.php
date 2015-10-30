@@ -45,22 +45,21 @@ FontAwesomeAsset::register($this);
 	        
 	        $menuItems = [
 	        		['label' => 'Home', 'url' => ['/site/index']],
-	        		['label' => 'About', 'url' => ['/site/about']],
-	        		['label' => 'Contact', 'url' => ['/site/contact']],
+	        		['label' => 'Sobre', 'url' => ['/site/about']],
+	        		['label' => 'Contato', 'url' => ['/site/contact']],
 	        		
 	        ];
 	        
 	        
 	        
 	        if (!Yii::$app->user->isGuest && $is_admin) {
-	        	$menuItems[] = ['label' => 'Users', 'url' => ['user/index']];
-	        	$menuItems[] = ['label' => 'Profile', 'url' => ['profile/index']];
-	        	$menuItems[] = ['label' => 'Roles', 'url' => ['role/index']];
-	        	$menuItems[] = ['label' => 'Status', 'url' => ['status/index']];
+	        	$menuItems[] = ['label' => 'Usuários', 'url' => ['user/index']];
+	        	$menuItems[] = ['label' => 'Perfil', 'url' => ['profile/index']];
+	        	$menuItems[] = ['label' => 'Papeis', 'url' => ['role/index']];
 	        }
 	        if (Yii::$app->user->isGuest) {
 	        	$menuItems[] = ['label' => 'Login', 'url' => ['site/login']];
-	        	$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+	        	$menuItems[] = ['label' => 'Registrar-se', 'url' => ['/site/signup']];
 	        } else {
 	        	$menuItems[] = [
 	        		'label' => 'Logout (' . Yii::$app->user->identity->username . ')',

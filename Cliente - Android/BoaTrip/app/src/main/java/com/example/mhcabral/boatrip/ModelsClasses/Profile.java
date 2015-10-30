@@ -120,4 +120,20 @@ public class Profile {
     public void setGenero(String genero) {
         this.genero = genero;
     }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", CPF='" + CPF + '\'' +
+                ", RG='" + RG + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", cep='" + cep + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", birthdate='" + birthdate + '\'' +
+                ", genero='" + genero + '\'' +
+                '}';
+    }
 }

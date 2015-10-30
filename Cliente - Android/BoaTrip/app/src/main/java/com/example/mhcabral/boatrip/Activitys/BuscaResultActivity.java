@@ -48,16 +48,17 @@ public class BuscaResultActivity extends BaseInternalActivity {
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 Log.i("Script", "Position: " + position);
                 Intent it;
-                if(Stub2.getUser().getId() == -1){
-                    if(Stub2.getUser().getUserProfile().getId() == -1){
+                if(Stub2.getUser().getId() != -1){
+                    if(Stub2.getUser().getUserProfile().getId() != -1){
 
                     }
                     else{
-
+                        it = new Intent(BuscaResultActivity.this,CadastroPerfilActivity.class);
+                        startActivity(it);
                     }
                 }
                 else{
-                    it = new Intent(BuscaResultActivity.this,LoginActivity.class);
+                    it = new Intent(BuscaResultActivity.this,LoginInternalActivity.class);
                     startActivity(it);
                 }
 

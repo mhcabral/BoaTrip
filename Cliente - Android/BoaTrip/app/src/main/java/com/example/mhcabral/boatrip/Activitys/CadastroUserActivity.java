@@ -80,14 +80,14 @@ public class CadastroUserActivity extends BaseInternalActivity {
 
     public void cadastrarUsuario(View view){
         if(senha.getText().toString().equals(senha2.getText().toString())) {
-            callByJsonObjectRequestLogin(Stub2.getPrefix_url() + "/index.php?r=user/mobile-create");
+            callByJsonObjectRequestCadastroUser(Stub2.getPrefix_url() + "/index.php?r=user/mobile-create");
         }
         else{
             Toast.makeText(this, "Senha e sua confirmação diferentes", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void callByJsonObjectRequestLogin(String url){
+    public void callByJsonObjectRequestCadastroUser(String url){
 
         params = new HashMap<String, String>();
         params.put("username",email.getText().toString());
@@ -100,7 +100,7 @@ public class CadastroUserActivity extends BaseInternalActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         int status = -1;
-                        Log.i("Script", "Sucess: " + response);
+                        Log.i("ScriptCadastro", "Sucess: " + response);
                         try {
                             status = response.getInt("status");
                         } catch (JSONException e) {

@@ -57,4 +57,15 @@ public class Passagem {
     public void setValor_desconto(float valor_desconto) {
         this.valor_desconto = valor_desconto;
     }
+
+    @Override
+    public String toString() {
+        return "Passagem{" +
+                "id=" + id +
+                ", tpassagem='" + tpassagem + '\'' +
+                ", quantidade=" + quantidade +
+                ", valor=" + valor +
+                ", valor_desconto=" + valor_desconto +
+                '}';
+    }
 }

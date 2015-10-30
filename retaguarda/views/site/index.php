@@ -7,7 +7,7 @@ use app\models\PermissionHelpers;
  * @var yii\web\View $this
  */
  
-$this->title = 'Admin Yii 2 Build';
+$this->title = 'BoaTrip';
 if (!Yii::$app->user->isGuest) { 
 	$is_admin = PermissionHelpers::requireMinimumRole('Admin');
 }
@@ -19,26 +19,11 @@ if (!Yii::$app->user->isGuest) {
  
     <div class="jumbotron">
     
-        <h1>Welcome to Admin!</h1>
+        <h1>Administração BoaTrip</h1>
  
         <p class="lead">
         
-        Now you can manage users, roles, and more with 
-        our easy tools.
-        
-        </p>
- 
-        <p>
-        
-<?php 
-             
-if (!Yii::$app->user->isGuest && $is_admin) {
-                    
-echo Html::a('Manage Users', ['user/index'], ['class' => 'btn btn-lg btn-success']);
-                
-} 
-            
-?>
+	        Aqui você pode gerenciar Barcos, Viagens / Passagens, Vendas e Outros.
         
         </p>
         
@@ -49,108 +34,65 @@ echo Html::a('Manage Users', ['user/index'], ['class' => 'btn btn-lg btn-success
         <div class="row">
             <div class="col-lg-4">
             
-                <h2>Users</h2>
- 
+            	<h2>Cadastros</h2>
                 <p>
-                
-This is the place to manage users.  You can edit status and roles from here.  
-The UI is easy to use and intuitive, just click the link below to get started.
-                
+					Este é o lugar para gerenciar usuários, perfis, papeis e status.
                 </p>
- 
                 <p>
-                
-<?php 
-                        
-   if (!Yii::$app->user->isGuest && $is_admin) {
-                                    
-       echo Html::a('Manage Users', ['user/index'], ['class' => 'btn btn-default']);
-                        
-   } 
-                        
-?>
-                
+				<?php 
+				   if (!Yii::$app->user->isGuest && $is_admin) {
+				       echo Html::a('Cadastros', ['cadastro'], ['class' => 'btn btn-default']);
+				   } 
+				?>
                 </p>
-                
+     
+                <h2>Barcos</h2>
+                <p>
+					Este é o lugar para gerenciar barcos.
+                </p>
+                <p>
+				<?php 
+				   if (!Yii::$app->user->isGuest && $is_admin) {
+				       echo Html::a('Gerenciar Barcos', ['barco/index'], ['class' => 'btn btn-default']);
+				   } 
+				?>
+                </p>
             </div>
-            <div class="col-lg-4">
             
-                <h2>Roles</h2>
- 
-                <p>
-                
-             	This is where you manage Roles.  You can decide who is admin and who is not.  You can
-add a new role if you like, just click the link below to get started.
-                
-                </p>
- 
-                <p>
-                
-<?php 
-                        
-     if (!Yii::$app->user->isGuest && $is_admin) {
-                                    
-        echo Html::a('Manage Roles', ['role/index'], ['class' => 'btn btn-default']);
-                                
-     } 
-                        
-?>
-        
-               </p>
-        
-            </div>
             <div class="col-lg-4">
-            
-                <h2>Profiles</h2>
- 
+            	<h2>Viagens</h2>
                 <p>
-                
-                Need to review Profiles?  This is the place to get it done.  
-These are easy to manage via UI. Just click the link below to manage profiles.
-                
+             		Este é o lugar para gerenciar viagens.
                 </p>
- 
                 <p>
-                
-<?php 
-                        
-     if (!Yii::$app->user->isGuest && $is_admin) {
-                        
-         echo Html::a('Manage Profiles', ['profile/index'], ['class' => 'btn btn-default']);
-                                
-     } 
-                
-?>
-              </p>
-                
-            </div>
-            <div class="col-lg-4">
-            
-                <h2>Status</h2>
- 
-                <p>
-                
-                This is where you manage Statuses.  You can add or delete.  
-                You can add a new status if you like, just click the link 
-                below to get started.
-                
+					<?php 
+					                        
+					     if (!Yii::$app->user->isGuest && $is_admin) {
+					                                    
+					        echo Html::a('Gerenciar Viagens', ['viagem/index'], ['class' => 'btn btn-default']);
+					                                
+					     } 
+					                        
+					?>
+               	</p>
+               
+				<h2>Vendas</h2>
+               	<p>
+               	Este é o lugar para gerenciar vendas.
                 </p>
- 
                 <p>
-                
-<?php 
-                        
-   if (!Yii::$app->user->isGuest && $is_admin) {
-                                        
-      echo Html::a('Manage Status', ['status/index'], ['class' => 'btn btn-default']);
-                                    
-    } 
-                        
-?>
-                
-                </p>
-                
-            </div>
+				<?php 
+				                        
+				     if (!Yii::$app->user->isGuest && $is_admin) {
+				                        
+				         echo Html::a('Gerenciar Vendas', ['venda/index'], ['class' => 'btn btn-default']);
+				                                
+				     } 
+				                
+				?>
+				</p>
+				                
+			</div>
         </div>
     </div>
 </div>

@@ -72,11 +72,12 @@ class VendaController extends Controller
         if ($passagem->valor_desconto > 0) {
         	$model->valor = $passagem->valor_desconto;
     	} else {$model->valor = $passagem->valor;}
+        
         $model->profile_id = $usuario->profile->id;
         $model->venda_status_id = 3;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['viagem/update', 'id' => $model->passagem->viagem_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -143,7 +144,7 @@ class VendaController extends Controller
     			$profile_id = $usuario->profile->id;
     		} else $profile_id = 0;
 	    	$models = Venda::find()
-	    	->innerJoinWith(['passagem', 'profile', 'vendaStatus'])
+	    	->innerJoinWith(['passagem', 'profile', 'vendaStatus', 'passagem.viagem'])
 	    	->andFilterWhere(['profile_id' => $profile_id])
 	    	->asArray()->all();
 	    
@@ -161,33 +162,34 @@ class VendaController extends Controller
     	Yii::$app->response->statusCode = 200;
     
     	$params=$_REQUEST;
-    	$valor = $_REQUEST['valor'];
     	$cartao_numero = $_REQUEST['cartao_numero'];
     	$validade = $_REQUEST['validade'];
     	$user_id  = $_REQUEST['user_id'];
     	$passagem_id  = $_REQUEST['passagem_id'];
     
-    	if (($user_id !== null) && ($passagem_id !== null)) {
-    		$user = User::findOne($id);
-    		if ($user !== null) {
-    			$profile = $user->profile;
-    			if ($profile == null) return array('status'=> 4, 'data'=>''); //Não tem profile
-    			$model = new Venda();
-    			 
-    			$model->data = date('Y-m-d H:i:s', time());
-    			$model->valor = $valor;
-    			$model->cartao_numero = $cartao_numero;
-    			$model->validade = $validade;
-    			$model->profile_id = $profile->id;
-    			$model->venda_status_id = 3;
-    			if ($model->validate()) {
-    				$user = $model->save();
-    				return array('status'=> 1, 'data'=>$model); //Ok
-    			} else {
-    				return array('status'=> 2, 'data'=>''); //Não validou
-    			}
-    		} else return array('status'=> 0, 'data'=>''); //Não encontrou usuario
-    	}
-    	return array('status'=> 3, 'data'=>''); //Campos com nulo
+    	if (($user_id == null) || ($passagem_id == null)) return array('status'=> 3, 'data'=>''); //Campos com nulo
+    	$user = User::findOne($user_id);
+    	if ($user !== null) {
+    		$profile = $user->profile;
+    		if ($profile == null) return array('status'=> 4, 'data'=>''); //Não tem profile
+    		if (($passagem = Passagem::findOne($passagem_id)) == null) return array('status'=> 5, 'data'=>''); //Passagem não encontrada
+    		$model = new Venda();
+    		 
+    		$model->data = date('Y-m-d H:i:s', time());
+    		if ($passagem->valor_desconto > 0) {
+        		$model->valor = $passagem->valor_desconto;
+    		} else {$model->valor = $passagem->valor;}
+    		$model->cartao_numero = $cartao_numero;
+    		$model->validade = $validade;
+    		$model->profile_id = $profile->id;
+    		$model->passagem_id = $passagem->id;
+    		$model->venda_status_id = 3;
+    		if ($model->validate()) {
+    			$user = $model->save();
+    			return array('status'=> 1, 'data'=>$model); //Ok
+    		} else {
+    			return array('status'=> 2, 'data'=>$model); //Não validou
+    		}
+    	} else return array('status'=> 0, 'data'=>''); //Não encontrou usuario
     }
 }

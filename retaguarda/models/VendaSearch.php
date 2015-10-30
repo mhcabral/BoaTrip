@@ -12,6 +12,9 @@ use app\models\Venda;
  */
 class VendaSearch extends Venda
 {
+	public $dataIni;
+	public $dataFim;
+	
     /**
      * @inheritdoc
      */
@@ -19,9 +22,25 @@ class VendaSearch extends Venda
     {
         return [
             [['id', 'profile_id', 'passagem_id', 'venda_status_id'], 'integer'],
-            [['data', 'cartao_numero', 'validade'], 'safe'],
+            [['data', 'dataIni', 'dataFim', 'cartao_numero', 'validade'], 'safe'],
             [['valor'], 'number'],
         ];
+    }
+    
+    public function attributeLabels()
+    {
+    	return [
+    			'id' => 'ID',
+    			'data' => 'Data',
+    			'dataIni' => 'Data Inicial',
+    			'dataFim' => 'Data Final',
+    			'valor' => 'Valor',
+    			'cartao_numero' => 'Cartao Numero',
+    			'validade' => 'Validade',
+    			'profile_id' => 'Profile',
+    			'passagem_id' => 'Passagem',
+    			'venda_status_id' => 'Status',
+    	];
     }
 
     /**
@@ -66,7 +85,9 @@ class VendaSearch extends Venda
         ]);
 
         $query->andFilterWhere(['like', 'cartao_numero', $this->cartao_numero])
-            ->andFilterWhere(['like', 'validade', $this->validade]);
+            ->andFilterWhere(['like', 'validade', $this->validade])
+        	->andFilterWhere(['>=', 'DATE(data)', $this->dataIni])
+        	->andFilterWhere(['<=', 'DATE(data)', $this->dataFim]);
 
         return $dataProvider;
     }

@@ -37,4 +37,13 @@ public class Usuario_status {
     public void setValor(String valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario_status{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", valor='" + valor + '\'' +
+                '}';
+    }
 }

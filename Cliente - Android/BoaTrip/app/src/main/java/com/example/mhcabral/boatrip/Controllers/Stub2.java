@@ -34,7 +34,6 @@ public class Stub2 {
     private static Localidade origemBuscado;
     private static Localidade destinoBuscado;
     private static String prefix_url;
-    private static boolean profile_ok;
     private static boolean loadedBarcos;
 
     public static void initInstance(Context current) {
@@ -52,7 +51,6 @@ public class Stub2 {
             listviagens = new ArrayList<Viagem>();
             listbarcos = new ArrayList<Barco>();
             prefix_url = "http://boatrip.microben.com.br";
-            profile_ok = false;
             listpromocoes = new ArrayList<Viagem>();
             listpassagemtipo = new ArrayList<PassagemTipo>();
             listgenero = new ArrayList<Genero>();
@@ -182,14 +180,6 @@ public class Stub2 {
 
     public static void setPrefix_url(String prefix_url) {
         Stub2.prefix_url = prefix_url;
-    }
-
-    public static boolean isProfile_ok() {
-        return profile_ok;
-    }
-
-    public static void setProfile_ok(boolean profile_ok) {
-        Stub2.profile_ok = profile_ok;
     }
 
     public static List<Viagem> getListpromocoes() {

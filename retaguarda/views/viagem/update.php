@@ -25,12 +25,22 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
+        		[
+        		'label'=>'Vendas',
+        		'format'=>'raw',
+        		'value' => function($data){
+					return Html::a('Criar Venda', ['venda/create', 'passagemid'=>$data->id], ['class' => 'btn btn-success']);
+        		}
+        		],
+            //'id',
             'quantidade',
-            'passagem_tipo_id',
+            [
+            	'attribute' => 'passagemTipo.passagem_tipo_nome',
+            	'label' =>'Tipo',
+        	],
             'valor',
             ['class' => 'yii\grid\ActionColumn', 'controller' => 'passagem'],
         ],

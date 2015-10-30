@@ -15,4 +15,6 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_cadastro_user">CadastroUserActivity</string>
     <string name="title_activity_promocao">PromocaoActivity</string>
+    <string name="title_activity_cadastro_perfil">CadastroPerfil</string>
+    <string name="title_activity_login_internal">LoginInternalActivity</string>
 </resources>

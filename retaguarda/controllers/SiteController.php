@@ -135,4 +135,9 @@ class SiteController extends Controller
     					'model' => $model,
     			]);
     }
+    
+    public function actionCadastro()
+    {
+    	return $this->render('cadastro');
+    }
 }

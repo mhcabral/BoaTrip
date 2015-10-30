@@ -16,8 +16,7 @@ use yii\grid\GridView;
 <div class="viagem-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    
-    
+        
     <?= $form->field($model, 'data_saida')->widget(DateControl::classname(), [
     	'type'=>DateControl::FORMAT_DATETIME,
    	 	'ajaxConversion'=>false,

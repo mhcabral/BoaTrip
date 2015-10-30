@@ -14,10 +14,17 @@ use kartik\money\MaskMoney;
 <div class="venda-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    
+    <?php $profileArray = ArrayHelper::map(\app\models\Profile::find()->orderBy('first_name')->all(), 'id',
+    		function($model, $defaultValue) {
+        		return $model->first_name.' '.$model->last_name.' - '.$model->cpf;
+    })?>
+    <?=	$form->field($model, 'profile_id')->dropDownList($profileArray, ['prompt' => '---- Selecione um Passageiro ----'])->label('Passageiro')?>
 
     <?= $form->field($model, 'data')->widget(DateControl::classname(), [
     	'type'=>DateControl::FORMAT_DATETIME,
    	 	'ajaxConversion'=>false,
+    	'disabled'=>true,
     	'options' => [
         	'pluginOptions' => [
             	'autoclose' => true
@@ -26,6 +33,7 @@ use kartik\money\MaskMoney;
 	]) ?>
 
     <?= $form->field($model, 'valor')->widget(MaskMoney::classname(), [
+    	'disabled'=>true,
     	'pluginOptions' => [
     	]
 	])?>

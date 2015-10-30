@@ -1,0 +1,313 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_dark"
+    tools:context="com.example.mhcabral.boatrip.Activitys.CadastroPerfilActivity">
+
+    <include
+        android:id="@+id/tb_cadastro_perfil"
+        layout="@layout/toolbar_internal"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:background="@color/gray"
+        android:layout_below="@+id/tb_cadastro_perfil">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Email:"
+                android:id="@+id/textViewEmailCadPerfil"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="[Email]"
+                android:id="@+id/textViewEmailCadPerfil2"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@+id/textViewEmailCadPerfil"
+                android:layout_alignLeft="@+id/editTextNomeCadPerfil2"
+                android:layout_alignStart="@+id/editTextNomeCadPerfil2"
+                android:layout_alignTop="@+id/textViewEmailCadPerfil" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Nome:"
+                android:id="@+id/textViewNomeCadPerfil"
+                android:gravity="center"
+                android:layout_below="@+id/textViewEmailCadPerfil"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextNomeCadPerfil2"
+                android:layout_alignTop="@+id/textViewNomeCadPerfil"
+                android:layout_toRightOf="@+id/textViewNomeCadPerfil"
+                android:layout_toEndOf="@+id/textViewNomeCadPerfil" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Sobrenome:"
+                android:id="@+id/textViewSobrenomeCadPerfil"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/editTextNomeCadPerfil2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextSobrenomeCadPerfil2"
+                android:layout_below="@+id/textViewSobrenomeCadPerfil"
+                android:layout_alignBottom="@+id/textViewCPFCadPerfil"
+                android:layout_alignLeft="@+id/editTextNomeCadPerfil2"
+                android:layout_alignStart="@+id/editTextNomeCadPerfil2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="CPF:"
+                android:id="@+id/textViewCPFCadPerfil"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/textViewSobrenomeCadPerfil"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextCPFCadPerfil"
+                android:layout_below="@+id/editTextNomeCadPerfil2"
+                android:layout_toRightOf="@+id/textViewSobrenomeCadPerfil"
+                android:layout_toEndOf="@+id/textViewSobrenomeCadPerfil" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="RG:"
+                android:id="@+id/textViewRGCadPerfil"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/textViewSobrenomeCadPerfil"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextRGCadPerfil"
+                android:layout_below="@+id/editTextNomeCadPerfil2"
+                android:layout_toRightOf="@+id/textViewSobrenomeCadPerfil"
+                android:layout_toEndOf="@+id/textViewSobrenomeCadPerfil" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Endereço:"
+                android:id="@+id/textViewEndereçoCadPerfil"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/textViewSobrenomeCadPerfil"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextEndereçoCadPerfil"
+                android:layout_below="@+id/editTextNomeCadPerfil2"
+                android:layout_toRightOf="@+id/textViewSobrenomeCadPerfil"
+                android:layout_toEndOf="@+id/textViewSobrenomeCadPerfil" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="CEP:"
+                android:id="@+id/textViewCEPCadPerfil"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/textViewSobrenomeCadPerfil"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextCEPCadPerfil"
+                android:layout_below="@+id/editTextNomeCadPerfil2"
+                android:layout_toRightOf="@+id/textViewSobrenomeCadPerfil"
+                android:layout_toEndOf="@+id/textViewSobrenomeCadPerfil" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Telefone:"
+                android:id="@+id/textViewTelefoneCadPerfil"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/textViewSobrenomeCadPerfil"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/editTextTelefoneCadPerfil"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Data de Nascimento:"
+                android:id="@+id/textViewBirthdateCadPerfil"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/textViewSobrenomeCadPerfil"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/editTextBirthdateCadPerfil"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Genero:"
+                android:id="@+id/textViewGeneroCadPerfil"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/textViewSobrenomeCadPerfil"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner"
+                android:layout_weight="2"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar"
+            android:id="@+id/buttonCadastroCadPerfil"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+</RelativeLayout>
